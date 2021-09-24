@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AppWithRoute from './AppWithRoute'
 import registerServiceWorker from './registerServiceWorker'
-
 import jQuery from 'jquery'
+import 'bootstrap/dist/css/bootstrap.min.css';
 window.jQuery = window.$ = jQuery
 require('semantic-ui-css/semantic.min.css')
 require('react-owl-carousel2/src/owl.carousel.css')
