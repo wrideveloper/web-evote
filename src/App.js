@@ -1,46 +1,17 @@
-import React, { Component, Fragment } from 'react'
-import { Element } from 'react-scroll'
+import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import AuthPage from './modules/Auth/AuthPage';
+import LoggedInPage from './modules/LoggedIn/LoggedInPage';
 
-import { Navigation } from './components'
-import {
-  Beranda,
-  Profil,
-  Kegiatan,
-  Foto,
-  Video,
-  Footer,
-  Artikel
-} from './scenes'
-
-class App extends Component {
-  menu = ['Beranda', 'Profil', 'Kegiatan', 'Foto', 'Artikel', 'Video', 'Kontak']
-
-  scenes = [
-    <Beranda />,
-    <Profil />,
-    <Kegiatan />,
-    <Foto />,
-    <Artikel />,
-    <Video />,
-    <Footer />
-  ]
-
-  renderScenes() {
-    return this.scenes.map((scene, index) => (
-      <Element id={this.menu[index]} key={index}>
-        {scene}
-      </Element>
-    ))
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <Navigation menu={this.menu} />
-        {this.renderScenes()}
-      </Fragment>
-    )
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/auth" component={AuthPage} />
+        <Route path="/" component={LoggedInPage} />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
