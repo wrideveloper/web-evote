@@ -3,8 +3,10 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Form, Inp
 
 const Pemilih = () => {
 
-    const [modal, setModal]=useState(false);
+    const [modal, setModal] = useState(false);
     const [role, setRole] = useState();
+
+    const handleModal = () => setModal(!modal);
 
     const changeRole = e => {
         let value = e.target.value;
@@ -13,7 +15,7 @@ const Pemilih = () => {
 
     return (
         <div>
-            <Button type="button" style={{backgroundColor: '#3F3D56'}} onClick={()=>setModal(true)}>
+            <Button type="button" style={{backgroundColor: '#3F3D56'}} onClick={handleModal}>
                 Tambah Pemilih</Button>
             <Modal isOpen={modal} size="lg" style={{maxWidth: '400px'}}>
                 <ModalHeader style={{color: '#547a95'}}>
@@ -44,10 +46,8 @@ const Pemilih = () => {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button style={{ backgroundColor: '#f7b217' }} onClick={()=>setModal(false)}>Batal</Button>
-                    <Button style={{ backgroundColor: '#547a95' }} onClick={()=>setModal(false)}>
-                        Tambah
-                    </Button>
+                    <Button style={{ backgroundColor: '#f7b217' }} onClick={handleModal}>Batal</Button>
+                    <Button style={{ backgroundColor: '#547a95' }} onClick={handleModal}>Tambah</Button>
                 </ModalFooter>
             </Modal>
         </div>
