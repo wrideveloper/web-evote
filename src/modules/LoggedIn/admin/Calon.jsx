@@ -3,19 +3,14 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const Calon = (props) => {
-    const {
-        buttonLabel,
-        className
-    } = props;
-
+const Calon = () => {
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
     return (
         <div>
             <Button style={{ backgroundColor: '#3F3D56' }} onClick={toggle}>Tambah Calon</Button>
-            <Modal style={{ background: "#E5E5E5" }} isOpen={modal} toggle={toggle} className={className}>
+            <Modal style={{ background: "#E5E5E5" }} isOpen={modal} toggle={toggle} >
                 <ModalHeader toggle={toggle} style={{ color: "#3C6786" }}>Tambah Calon</ModalHeader>
                 <ModalBody>
                     <FormGroup style={{ marginTop: 5 }}>
