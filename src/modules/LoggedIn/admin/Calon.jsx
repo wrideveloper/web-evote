@@ -1,27 +1,8 @@
 import React from 'react';
-import { Button, Table } from 'reactstrap';
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Table, Button } from 'reactstrap';
+import CompIcons from '../../../components/CompIcons';
 
 const Calon = () => {
-
-    const Action = () =>{
-        return(
-            <div className="contents" style={{textAlign: 'center', padding: '10px 0px'}}>
-                <Button color="primary" size="sm" style={{marginRight: '7px'}}>
-                    <FontAwesomeIcon icon={faEye} />
-                </Button>
-                <Button color="danger" size="sm" variant="danger" style={{marginRight: '7px'}}>
-                    <FontAwesomeIcon icon={faTrash} />
-                </Button>
-                <Button color="warning" size="sm">
-                    <FontAwesomeIcon icon={faEdit} />
-                </Button>       
-            </div>
-        )
-    }
 
     return (
         <div className="container">
@@ -45,14 +26,14 @@ const Calon = () => {
                     <td>1</td>
                     <td>Mark</td>
                     <td>Otto</td>
-                    <td><Action name="test"/></td>
+                    <td><CompIcons name="test"/></td>
                     </tr>
                     <tr>
                     <td>2</td>
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>
-                        <Action />
+                        <CompIcons />
                     </td>
                     </tr>
                 </tbody>
