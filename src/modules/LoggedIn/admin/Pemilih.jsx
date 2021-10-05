@@ -6,18 +6,18 @@ import { Table, Button } from 'reactstrap';
 const Pemilih = () => {
     return (
         <div>
-            <Button color="secondary" style={{marginLeft:'40px'}}>
+            <Button color="secondary" style={{marginLeft:'30px'}}>
             Tambah Pemilih
             </Button>
             <br /><br />
-      <Table striped style={{width:'1025px',marginLeft:'40px', marginTop:'5px', marginRight:'20px',cellpadding:'10', cellspacing:'5', border:'1', borderColor:'lightgray'}}>
+      <Table striped style={{width:'96%',marginLeft:'30px', marginTop:'5px', marginRight:'20px',cellpadding:'10', cellspacing:'5', border:'1', borderColor:'lightgray'}}>
       
       <thead>
         <tr style={{textAlign: 'center',cellpadding:'10px'}}>
-          <th style={{width:'205px', fontSize:'18px'}}>Nim</th>
-          <th style={{width:'400px', fontSize:'18px'}}>Nama</th>
-          <th style={{width:'170px', fontSize:'18px'}}>Kelas</th>
-          <th style={{width:'250px', fontSize:'18px'}}>Action</th>
+          <th style={{width:'19%', fontSize:'18px'}}>Nim</th>
+          <th style={{width:'40%', fontSize:'18px'}}>Nama</th>
+          <th style={{width:'14%', fontSize:'18px'}}>Kelas</th>
+          <th style={{width:'23%', fontSize:'18px'}}>Action</th>
         </tr>
       </thead>
       <tbody>
