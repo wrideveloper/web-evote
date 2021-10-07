@@ -1,12 +1,11 @@
-// import React from 'react'
-import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
+import React, {useState} from 'react';
+import CompIcons from '../../../components/CompIcons';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Calon = () => {
     const [modal, setModal] = useState(false);
-
     const toggle = () => setModal(!modal);
+  
     return (
         <div>
             <Button style={{ backgroundColor: '#3F3D56' }} onClick={toggle}>Tambah Calon</Button>
@@ -54,8 +53,34 @@ const Calon = () => {
                     <Button style={{ backgroundColor: '#3F3D56' }} onClick={toggle}>Tambah</Button>
                 </ModalFooter>
             </Modal>
-        </div >
+            <Table striped bordered hover>
+                <thead >
+                    <tr style={{textAlign: 'center', padding: '800px'}}>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>Foto</th>
+                    <th colSpan="3" id="label-action" style={{textAlign: 'center'}}>Action</th>
+                    </tr>
+                </thead>
+                <tbody style={{height: '85px'}}>
+                    <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td><CompIcons name="test"/></td>
+                    </tr>
+                    <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>
+                        <CompIcons />
+                    </td>
+                    </tr>
+                </tbody>
+            </Table>
+        </div>
     )
 }
 
-export default Calon
+export default Calon;
