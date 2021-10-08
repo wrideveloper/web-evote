@@ -1,0 +1,53 @@
+/* .container{
+    background-color:#B2B2B2;
+    margin: auto;
+    border: 3px yellow solid;
+    border-radius: 30px;
+    padding: 5%;
+} */
+
+.box{
+    border: 1px #B2B2B2 solid;
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    color: #3F3D56;
+    margin: auto;
+}
+
+.total-suara{
+    font: 3rem Inter, normal;
+    font-weight: bold;
+}
+
+.calon{
+    margin-top: -12px;
+}
+
+.contents{
+    margin: auto;
+}
+
+.deskripsi{
+    font: 16px Inter,
+    normal;
+    font-weight: bold;
+    padding-top: 15%;
+}
+
+.paragraf{
+    background-color: #f0ecec;
+    width: 70%;
+    margin-top: 75px;
+    margin-left: 85px;
+    padding: 10% 0%;
+    border-radius: 3%;
+}
+
+.total-suara-final{
+    text-align: center;
+    padding: 4%;
+    font: 32px Inter, normal;
+    font-weight: bold;
+}
+
