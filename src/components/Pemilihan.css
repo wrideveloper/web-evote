@@ -8,7 +8,6 @@
 }
 
 .total-suara{
-    font: 3rem Inter, normal;
     font-weight: bold;
 }
 
@@ -21,8 +20,6 @@
 }
 
 .deskripsi{
-    font: 16px Inter,
-    normal;
     font-weight: bold;
     padding-top: 15%;
 }
@@ -32,14 +29,13 @@
     width: 70%;
     margin-top: 75px;
     margin-left: 80px;
-    padding: 10% 0%;
+    padding: 10% 0;
     border-radius: 3%;
 }
 
 .total-suara-final{
     text-align: center;
     padding: 4%;
-    font: 32px Inter, normal;
     font-weight: bold;
 }
 

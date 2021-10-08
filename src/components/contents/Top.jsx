@@ -12,7 +12,7 @@ const Top = ({ toggleSidebar }) => {
             className="navbar mb-5 bg-white flex justify-content-between"
             expand="md"
         >
-        <Button color="info" onClick={toggleSidebar}>
+        <Button color="warning" onClick={toggleSidebar}>
             <FontAwesomeIcon icon={faAlignLeft} />
         </Button>
         <Button type="button" style={{backgroundColor: '#3F3D56'}}>Log Out</Button>

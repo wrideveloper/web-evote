@@ -1,13 +1,16 @@
 import React from 'react';
-import { Container, Row, Col, Table } from 'reactstrap';
-import '../../../components/Pemilihan.css';
-import DeskripsiHasilPemilihan from '../../../components/DeskripsiHasilPemilihan';
-import CardHarapan from '../../../components/Card/CardHarapan'
+import { Container, Row, Col, Table, Button } from 'reactstrap';
+import { Link } from 'react-router-dom'
+import '../../../../components/Pemilihan.css';
+import DeskripsiHasilPemilihan from '../../../../components/DeskripsiHasilPemilihan';
 
 const HasilPemilihan = () => {
     return (
         <div>
          <Container>
+            <div className="text-end mb-3">
+                <Link to="/admin/hasil-pemilihan/saran"><Button style={{ backgroundColor: '#3F3D56' }}>Harapan dan Saran</Button></Link>
+            </div>
             <Row className="box">
                 <Col xs="7">
                     <div className="paragraf">
@@ -24,8 +27,7 @@ const HasilPemilihan = () => {
                 <h3 className="total-suara-final">Total Suara : 85</h3>
             </Row>
         </Container>
-        <h1>Daftar Hasil pemilihan</h1>
-        <Table striped>
+        <Table striped bordered hover className="mt-4">
           <thead>
               <tr>
                 <th>ID</th>
@@ -55,11 +57,6 @@ const HasilPemilihan = () => {
               </tr>
           </tbody>
         </Table>
-            <CardHarapan
-                name='Adelina Indra'
-                harapan='Lorem ipsum dolor sit amet, consectur adipiscing elit. Fermentum nibh cum nibh suspendisse porta amet et. Integer at vel vel, velit ultrices tristique sed.'
-                saran='Lorem ipsum dolor sit amet, consectur adipiscing elit. Fermentum nibh cum nibh suspendisse porta amet et. Integer at vel vel, velit ultrices tristique sed.'
-            />
         </div>
     )
 }

@@ -1,4 +1,3 @@
-import react from 'react';
 import { Col } from 'reactstrap';
 
 const DeskripsiHasilPemilihan = (props) => {

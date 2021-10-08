@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Container, Row, Col
+    Card, CardText, CardBody,
+    CardTitle, CardSubtitle, Row, Col
 } from 'reactstrap';
 
 const CardHarapan = (props) => {
     return (
-        <Container>
-            <Card style={{ backgroundColor: '#f2f2f2', width: '85%', margin: 'auto', border: 'none', borderRadius: '8px' }}>
+        <>
+            <Card className="mb-3" style={{ backgroundColor: '#f2f2f2', border: 'none', borderRadius: '8px' }}>
                 <CardBody>
                     <Row style={{ padding: '10px' }}>
                         <Row>
@@ -30,7 +30,7 @@ const CardHarapan = (props) => {
                     </Row>
                 </CardBody>
             </Card>
-        </Container>
+        </>
     );
 };
 

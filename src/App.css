@@ -30,6 +30,7 @@ a:focus {
   color: #fff;
   margin-left: -250px;
   transition: all 0.5s;
+  min-height: 100%;
 }
 
 .sidebar.is-open {
@@ -103,7 +104,7 @@ li a.dropdown-toggle::after {
     CONTENT STYLE
 ----------------------------------------------------- */
 .content {
-  height: 100vh;
+  height: 100%;
 }
 
 @media only screen and (max-width: 500px) {
