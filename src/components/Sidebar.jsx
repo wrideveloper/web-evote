@@ -2,7 +2,6 @@ import React from "react";
 import { NavItem, NavLink, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
 
-
 const SideBar = ({ isOpen, toggle }) => (
   <div className={isOpen  ? "sidebar is-open" : "sidebar"}>
     <div className="sidebar-header text-center">

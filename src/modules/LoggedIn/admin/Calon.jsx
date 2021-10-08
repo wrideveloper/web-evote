@@ -8,7 +8,7 @@ const Calon = () => {
   
     return (
         <div>
-            <Button style={{ backgroundColor: '#3F3D56' }} onClick={toggle}>Tambah Calon</Button>
+            <Button className="mb-3" style={{ backgroundColor: '#3F3D56' }} onClick={toggle}>Tambah Calon</Button>
             <Modal style={{ background: "#E5E5E5" }} isOpen={modal} toggle={toggle} >
                 <ModalHeader toggle={toggle} style={{ color: "#3C6786" }}>Tambah Calon</ModalHeader>
                 <ModalBody>
@@ -16,7 +16,7 @@ const Calon = () => {
                         <Label for="exampleNama" style={{ color: "#3C6786" }} >Nama </Label>
                         <Input type="nama" name="nama" id="exampleNama" />
                     </FormGroup>
-                    <Form style={{ marginTop: 13 }}>
+                    <Form className="mt-4">
                         <Row>
                             <Col xs={6}>
                                 <FormGroup>
@@ -31,7 +31,7 @@ const Calon = () => {
                             </Col>
                         </Row>
                     </Form>
-                    <Form style={{ marginTop: 13 }}>
+                    <Form className="mt-4">
                         <Row>
                             <Col xs={6}>
                                 <FormGroup>
