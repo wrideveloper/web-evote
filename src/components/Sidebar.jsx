@@ -9,7 +9,7 @@ const SideBar = ({ isOpen, toggle }) => (
         &times;
       </span>
       <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px'}}>
-        <img alt="logo wri" src="./images/logo-wri.png" width={50} height={50} />
+        <img alt="logo wri" src={process.env.PUBLIC_URL + '/images/logo-wri.png'} height={50} />
         <div><h3>E-Vote</h3></div>
       </div>
       
