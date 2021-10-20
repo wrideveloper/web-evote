@@ -1,6 +1,6 @@
 import React from "react";
 import { NavItem, NavLink, Nav } from "reactstrap";
-import { Link } from "react-router-dom";
+import { NavLink as Linked} from "react-router-dom";
 
 const SideBar = ({ isOpen, toggle }) => (
   <div className={isOpen  ? "sidebar is-open" : "sidebar"}>
@@ -18,17 +18,17 @@ const SideBar = ({ isOpen, toggle }) => (
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
         <NavItem className="sidebar-item" >
-          <NavLink tag={Link} to={"/admin/calon"} className="text-white bold text-center">
+          <NavLink tag={Linked} to={"/admin/calon"} activeClassName="text-white active" className="text-white">
             Calon
           </NavLink>
         </NavItem>  
         <NavItem className="sidebar-item">
-          <NavLink tag={Link} to={"/admin/pemilih"} className="text-white bold text-center">
+          <NavLink tag={Linked} to={"/admin/pemilih"} className="text-white bold text-center">
             Pemilih
           </NavLink>
         </NavItem>
         <NavItem className="sidebar-item">
-          <NavLink tag={Link} to={"/admin/hasil-pemilihan"} className="text-white bold text-center">
+          <NavLink tag={Linked} to={"/admin/hasil-pemilihan"} className="text-white bold text-center">
             Hasil Pemilihan
           </NavLink>
         </NavItem>
