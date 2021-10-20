@@ -8,12 +8,12 @@ const SideBar = ({ isOpen, toggle }) => (
       <span color="info" onClick={toggle} style={{ color: "#fff" }}>
         &times;
       </span>
-      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px'}}>
-        <img alt="logo wri" src="./images/logo-wri.png" width={50} height={50} />
+      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '10px 0'}}>
+        <img alt="logo wri" src={process.env.PUBLIC_URL + '/images/logo-wri.png'} height={50} />
         <div><h3>E-Vote</h3></div>
       </div>
       
-      <hr/>
+      <hr style={{margin: '0'}} />
     </div>
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
