@@ -45,7 +45,7 @@ a:focus {
 .sidebar-header h3 {
   color: #fff;
   padding: 10px 0 10px 0;
-  margin-left: 5px;
+  margin-left: 14px;
 }
 
 .sidebar ul p {
@@ -83,14 +83,14 @@ li a.dropdown-toggle::after {
   display: none;
 }
 .side-menu {
-  height: calc(100vh - 130px);
+  height:100vh;
   overflow-y: scroll;
 }
 
 .side-menu::-webkit-scrollbar {
-  width: 10px;
+  width: 0;
 }
-
+/* 
 .side-menu::-webkit-scrollbar-thumb {
   background: #5466b3;
   border-radius: 3px;
@@ -98,7 +98,7 @@ li a.dropdown-toggle::after {
 
 .side-menu::-webkit-scrollbar-thumb:hover {
   background: #3a4c99;
-}
+} */
 
 /* ---------------------------------------------------
     CONTENT STYLE
