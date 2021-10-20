@@ -62,6 +62,15 @@ a:focus {
     width: 100%;
 }
 
+.nav-link {
+  text-align: center;
+  font-weight: bold;
+}
+
+.nav-link.active {
+  background-color: #F7B217 !important;
+}
+
 .items-menu {
   color: #fff;
   background: #6d7fcc;
