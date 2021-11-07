@@ -1,11 +1,14 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import LoginPage from './Login/LoginPage'
+import LoginAdmin from './Login/LoginAdmin'
+import LoginUser from './LoginUsers/LoginUser'
+
 const AuthPage = () => {
     return (
         <Switch>
-            <Route path="/auth/login" component={LoginPage} />
-            <Redirect to="/auth/login" />
+            <Route path="/login/user" component={LoginUser} />
+            <Route path="/login/admin" component={LoginAdmin} />
+            <Redirect to="/login/user" />
         </Switch>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CompIcons from '../../../components/CompIcons';
-import CardDetailCalon from '../../../components/Card/CardDetailCalon';
+// import CardDetailCalon from '../../../components/Card/CardDetailCalon';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 

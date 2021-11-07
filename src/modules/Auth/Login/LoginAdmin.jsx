@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input, Card, Container } from 'reactstrap';
 
-const LoginPage = () => {
+const LoginAdmin = () => {
     return (
         <Container className="p" style={{padding: '100px 0px',display: 'flex',justifyContent: 'center',alignItems: 'center'}}>
             <Card style={{padding: '20px',maxheight: '50%', minWidth: '50%'}}>
-                <h3>E-Vote WRI</h3>
+                <h3>Admin Evote</h3>
             <Form>
                 <FormGroup style={{marginBottom: '20px'}}>
                     <Label for="exampleEmail" style={{marginBottom: '5px'}}>Username</Label>
@@ -17,7 +17,7 @@ const LoginPage = () => {
                     <Input type="password" name="password" id="examplePassword" placeholder="enter password" />
                 </FormGroup>
                 <hr></hr>
-                <Link to="/evote/admin/dashboard">
+                <Link to="/admin">
                         <Button class= "float-right !important" color="primary">Login</Button>
                 </Link>
             </Form>
@@ -26,4 +26,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default LoginAdmin
