@@ -2,10 +2,29 @@ import React, { useState } from 'react';
 import CompIcons from '../../../components/CompIcons';
 import CardDetailCalon from '../../../components/Card/CardDetailCalon';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
+import axios from 'axios';
 
 const Calon = () => {
+
+    const [calon, setCalon] = useState([])
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    async function getCalon() {
+        try {
+            const response = await axios.get('http://evote.ceban-app.com/calon');
+            setCalon(response.data)
+            //console.log("Halo ini Data Calon",response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    //console.log(getCalon);
+
+    React.useEffect(() => {
+        getCalon()
+    })
 
     return (
         <div>
@@ -63,22 +82,28 @@ const Calon = () => {
                         <th colSpan="3" id="label-action" style={{ textAlign: 'center' }}>Action</th>
                     </tr>
                 </thead>
-                <tbody style={{ height: '85px' }}>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><CompIcons name="test" /></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>
-                            <CompIcons />
-                        </td>
-                    </tr>
-                </tbody>
+                {
+                calon.map((listCalon) => (
+                        <>
+                            <tbody style={{ height: '85px' }}>
+                                <tr>
+                                    <td>{listCalon.nama}</td>
+                                    <td>{listCalon.kelas}</td>
+                                    <td><img src={listCalon.foto} alt="" height="75px"/></td>
+                                    <td><CompIcons name="test" /></td>
+                                </tr>
+                                {/* <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>
+                                        <CompIcons />
+                                    </td>
+                                </tr> */}
+                            </tbody>
+                        </>
+                    ))
+                }
             </Table>
         </div>
     )
