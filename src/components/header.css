@@ -1,0 +1,32 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 110px;
+    background-color: #2e2c49;
+}
+.logo{
+    margin-left: 45px;
+    height: 50px;
+}
+.nav-links{
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    width: 75%;
+}
+.home, .hasil, .logout{
+    text-decoration: none;
+    color: white;
+    font-size: 21px;
+    font-weight: 370;
+    padding: 10px 20px;
+    margin: 0px 10px;
+}
+.home:hover, .hasil:hover, .logout:hover,
+.home:visited, .hasil:visited, .logout:visited{
+    color: white;
+}
+.logout{
+    margin-right: 60px;
+}
