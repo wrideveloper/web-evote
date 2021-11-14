@@ -9,7 +9,7 @@
     margin-left: 15px;
     height: 50px;
 }
-/* .nav-links{
+.nav-links{
     display: flex;
     justify-content: flex-end;
     list-style: none;
@@ -29,4 +29,4 @@
 }
 .logout{
     margin-right: 60px;
-} */
+}
