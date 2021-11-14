@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   display: flex;
   width: 100%;
@@ -9,6 +15,9 @@
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a,
@@ -112,6 +121,10 @@ li a.dropdown-toggle::after {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
+.home-page {
+  display: flex;
+  min-height: 80vh;
+}
 .content {
   height: 100%;
 }

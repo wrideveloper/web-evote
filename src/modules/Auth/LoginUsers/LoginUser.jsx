@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button, Card } from 'reactstrap'
 import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { date } from '../../../libs/date'
+import { date } from '../../../helper/date'
 
 const LoginPage = () => {
     return (
