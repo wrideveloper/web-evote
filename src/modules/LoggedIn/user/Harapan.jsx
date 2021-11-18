@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { Button, Row, Col, Container, Card, CardBody, CardTitle, CardSubtitle, FormGroup, Label, Input , Table, CardFooter} from 'reactstrap';
 import Picker from 'emoji-picker-react';
 import axios from 'axios';
+import { dateNumber } from '../../../helper/date';
+// import './style.css';
 
 export default function Harapan() {
 
+    // console.log(dateNumber)
     const [inputStr, setInputstr] = useState('');
     const [showPicker, setShowPicker] = useState(false);
 
@@ -32,12 +35,34 @@ export default function Harapan() {
 
     async function getHarapan() {
         try {
-            const response = await axios.get('http://evote.ceban-app.com/calon');
+            const response = await axios.get('http://evote.ceban-app.com/vote');
             setHarapan(response.data)
-            //console.log("Halo ini Data Calon",response.data);
+            console.log("Halo ini Data Calon",response.data);
         } catch (error) {
             console.error(error);
         }
+    }
+
+    const [inputHarapan, setInputHarapan] = useState("")
+
+    async function postHarapan() {
+        try {
+            const response = await axios.post('http://evote.ceban-app.com/vote', {
+                id_calon: '3',
+                id_user: '3',
+                harapan: inputHarapan,
+                waktu_vote: dateNumber
+            });
+            alert('berhasil');
+            console.log(response);
+        }catch (error){
+            console.error(error);
+        }
+    }
+
+    const handleInputHarapan = (event) => {
+        setInputHarapan(event.target.value);
+        console.log(inputHarapan)
     }
 
     //console.log(getCalon);
@@ -47,7 +72,7 @@ export default function Harapan() {
     })
         
     return (
-        <div>
+        <div className="containerHarapan">
             <center><h1 style={{marginTop: '83px'}}>Sampaikan Harapanmu</h1>
             <h1 style={{ borderBottom: 'solid #f7b217 10px', width:'345px',borderRadius:'20px', margin:'20px 0px 60px 0px'}}></h1>
             </center>
@@ -85,6 +110,7 @@ export default function Harapan() {
                                     maxlength="150" 
                                     placeholder= "Tulis Harapan" 
                                     style={{textAlign: 'center', height: "230px" , padding: '100px', verticalAlign: 'middle'}}
+                                    onChange={(event) => handleInputHarapan(event)}
                                     />
                                     {/* <div className="my-textarea-remaining-chars">150 characters remaining</div> */}
                                 </FormGroup>
@@ -102,7 +128,7 @@ export default function Harapan() {
                                 </div>
                             </CardBody>                         
                             <CardFooter style={{padding: "45px 68px 45px 45px", textAlign: 'right'}}>
-                                <Button color="warning" style={{color: 'white', width: '150px', borderRadius: '100px'}}>
+                                <Button onClick={postHarapan} color="warning" style={{color: 'white', width: '150px', borderRadius: '100px'}}>
                                     Submit
                                 </Button>
                             </CardFooter>
@@ -126,16 +152,16 @@ export default function Harapan() {
                                     </tr>
                                 </thead>
                                         {
-                                            harapan.map((listCalon) => (
+                                            harapan.map((listHarapan) => (
                                                 <>
                                                 <tbody>
                                         <tr>
                                         <td scope="row" style={{paddingTop:'65px', paddingRight: '60px', paddingBottom: '60px'}}>
-                                            {listCalon.nama}
+                                            {listHarapan.nama_pemilih}
                                         </td>
                                         
                                         <td style={{paddingTop:'65px', paddingBottom: '60px'}}>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo, laudantium! Necessitatibus vero quos ducimus, quas optio ab nisi delectus dolores reiciendis, nobis ipsa voluptate quidem, deserunt molestiae mollitia fuga sequi?</td>
+                                            {listHarapan.harapan}</td>
                                         </tr>
                 
                                         {/* Fetching */}
