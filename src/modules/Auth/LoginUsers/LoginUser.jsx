@@ -29,7 +29,7 @@ const LoginPage = () => {
             display: 'flex',
             justifyContent: 'center'
         }}>
-            <Card style={{
+            <Card style={{ 
                 textAlign: 'center',
                 padding: '20px'
             }}>
