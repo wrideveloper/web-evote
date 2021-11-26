@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css"
 
 function Header() {
+  const [user, setUser] = useState([]);
+
+  const handleLogout = () => {
+    setUser({});
+    localStorage.clear();
+    alert('Anda Berhasil Logout')
+    window.location.reload()
+  };
+
   return (
     <nav className="navbar">
       <img className="logo" alt="logo" src={process.env.PUBLIC_URL + '/images/logo-wri-banner2.png'} />
@@ -13,7 +22,7 @@ function Header() {
         <Link to="#" className="hasil">
           <li>Lihat hasil vote</li>
         </Link>
-        <Link to="#" className="logout">
+        <Link to="#" className="logout" onClick={handleLogout}>
           <li>Log Out</li>
         </Link>
       </ul>

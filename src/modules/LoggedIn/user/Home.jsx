@@ -9,7 +9,8 @@ import axios from 'axios';
 import { dateNumber } from '../../../helper/date';
 
 const Home = () => {
-
+    const [user, setUser] = useState([]);
+    const [calon, setCalon] = useState('');
     const [dataCalon, setDataCalon] = useState([]);
 
     const getData = async () => {
@@ -23,15 +24,18 @@ const Home = () => {
     };
     useEffect(() => {
         getData()
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.parse(loggedInUser);
+            setUser(foundUser);
+        }
     }, [dataCalon]);
-
-    const [calon, setCalon] = useState('');
 
     const postVote = async () => {
         try {
-            const response = await axios.post('http://evote.ceban-app.com/vote', {
+            await axios.post('http://evote.ceban-app.com/vote', {
                 id_calon: calon,
-                id_user: '3',
+                id_user: user.id_user,
                 harapan: '',
                 waktu_vote: dateNumber
             });
