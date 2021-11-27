@@ -5,14 +5,18 @@ import {
     Navbar,
     Button
 } from "reactstrap";
+import { useHistory } from 'react-router';
+
 const Top = ({ toggleSidebar }) => {
     const [user, setUser] = useState([]);
+    let history = useHistory()
 
     const handleLogout = () => {
         setUser({});
         localStorage.clear();
-        alert('Anda Berhasil Logout')
-        window.location.reload()
+        alert('Anda Berhasil Logout');
+        history.push('/');
+        window.location.reload();
     };
 
     return (

@@ -16,10 +16,10 @@ function Header() {
     <nav className="navbar">
       <img className="logo" alt="logo" src={process.env.PUBLIC_URL + '/images/logo-wri-banner2.png'} />
       <ul className="nav-links">
-        <Link to="#" className="home">
+        <Link to="/" className="home">
           <li>Home</li>
         </Link>
-        <Link to="#" className="hasil">
+        <Link to="/hasil-vote" className="hasil">
           <li>Lihat hasil vote</li>
         </Link>
         <Link to="#" className="logout" onClick={handleLogout}>

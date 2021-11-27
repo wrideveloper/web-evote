@@ -6,6 +6,7 @@ import {
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 import { dateNumber } from '../../../helper/date';
 
 const Home = () => {
@@ -113,47 +114,47 @@ const Home = () => {
                 <CardGroup className="mb-5 d-flex justify-content-center">
                     {
                         dataCalon.map((menampilkanData) => (
-                            <>
-                                <Card className="m-4" style={{ maxWidth: "300px", borderRadius: "10px" }}>
+                            <Card key={menampilkanData.id_calon} className="m-4" style={{ maxWidth: "300px", borderRadius: "10px" }}>
 
-                                    <CardImg
-                                        className="d-flex justify-content-left"
-                                        alt="foto calon"
-                                        src={menampilkanData.foto}
-                                        top width="100%"
-                                        style={{ borderRadius: "10px 10px 0px 0px", marginBottom: "-27px" }} />
-                                    <span
-                                        className="p-1"
-                                        style={{ fontSize: "13px", color: "white", backgroundColor: "#3f3d56", maxWidth: "80px", borderRadius: "0px 5px 0px 0px" }}>
-                                        Calon {menampilkanData.id_calon}
-                                    </span>
-                                    <CardBody>
-                                        <CardTitle className="mt-4" tag="h5">{menampilkanData.nama}</CardTitle>
-                                        <CardSubtitle className="mb-3 text-muted" tag="h6">{menampilkanData.miniclass}</CardSubtitle>
-                                        <CardText>"{menampilkanData.visi}"</CardText>
+                                <CardImg
+                                    className="d-flex justify-content-left"
+                                    alt="foto calon"
+                                    src={menampilkanData.foto}
+                                    top width="100%"
+                                    style={{ borderRadius: "10px 10px 0px 0px", marginBottom: "-27px" }} />
+                                <span
+                                    className="p-1"
+                                    style={{ fontSize: "13px", color: "white", backgroundColor: "#3f3d56", maxWidth: "80px", borderRadius: "0px 5px 0px 0px" }}>
+                                    Calon {menampilkanData.id_calon}
+                                </span>
+                                <CardBody>
+                                    <CardTitle className="mt-4" tag="h5">{menampilkanData.nama}</CardTitle>
+                                    <CardSubtitle className="mb-3 text-muted" tag="h6">{menampilkanData.miniclass}</CardSubtitle>
+                                    <CardText>"{menampilkanData.visi}"</CardText>
 
-                                        <div>
+                                    <div>
+                                        <Button
+                                            className="mb-1"
+                                            color="warning"
+                                            style={{ fontSize: "12px", fontWeight: "bold", padding: "15px 60px", borderRadius: "25px" }}
+                                            onClick={() => { handleModal(); setCalon(menampilkanData.id_calon) }}>
+                                            Vote
+                                        </Button>
+                                    </div>
+                                    <div>
+                                        <Link to={`/profile-caketum/${menampilkanData.id_calon}`}>
                                             <Button
-                                                className="mb-1"
-                                                color="warning"
-                                                style={{ fontSize: "12px", fontWeight: "bold", padding: "15px 60px", borderRadius: "25px" }}
-                                                onClick={() => { handleModal(); setCalon(menampilkanData.id_calon) }}>
-                                                Vote
-                                            </Button>
-                                        </div>
-                                        <div>
-                                            <Button
-                                                className="mb-3"
+                                                className="mb-3 mt-1"
                                                 style={{
                                                     color: "black", fontSize: "12px", fontWeight: "bold", padding: "15px 41px",
                                                     borderRadius: "25px", borderColor: "#e9e8f6", backgroundColor: "transparent"
                                                 }}>
                                                 Lihat Profil
                                             </Button>
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                            </>
+                                        </Link>
+                                    </div>
+                                </CardBody>
+                            </Card>
                         ))
                     }
                 </CardGroup>

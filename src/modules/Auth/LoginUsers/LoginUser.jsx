@@ -22,23 +22,27 @@ const LoginPage = () => {
 
     const handleSubmit = () => {
         const findUser = users.find(item => item.nim === nim && item)
-        if (!nim) return alert("Harap mengisikan NIM/password terlebih dahulu!")
-        if (findUser.nim === nim && findUser.password === md5(password).toString()) {
-            console.log('Line 24 ~ role ', findUser.role)
-            if (findUser.role === "Pemilih") {
-                alert('Selamat Anda Berhasil Login')
-                window.location.reload()
-                history.push('/evote')
-
-            } else if (findUser.role === "Admin") {
-                alert('Anda login sebagai Admin')
-                window.location.reload()
-                history.push('/admin')
-            }
-            setUser(findUser)
-            localStorage.setItem('user', JSON.stringify(findUser))
+        if (!nim || !password) return alert("Harap mengisikan NIM/password terlebih dahulu!")
+        if (!findUser) {
+            return alert("Nim Anda Belum Terdaftar, Silahkan chat Admin Yukafi: 085607287537")
         } else {
-            alert('NIM/Password Anda sepertinya salah, harap periksa kembali!')
+            if (findUser.nim === nim && findUser.password === md5(password).toString()) {
+                console.log('Line 24 ~ role ', findUser.role)
+                if (findUser.role === "Pemilih") {
+                    alert('Selamat Anda Berhasil Login')
+                    window.location.reload()
+                    history.push('/')
+
+                } else if (findUser.role === "Admin") {
+                    alert('Anda login sebagai Admin')
+                    window.location.reload()
+                    history.push('/')
+                }
+                setUser(findUser)
+                localStorage.setItem('user', JSON.stringify(findUser))
+            } else {
+                alert('NIM/Password Anda sepertinya salah, harap periksa kembali!')
+            }
         }
     }
 

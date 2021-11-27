@@ -1,10 +1,9 @@
-import { render } from '@testing-library/react'
 import React from 'react'
 
 const Done = () => {
     return (
         <div>
-            <div style={{ 
+            <div style={{
                 backgroundColor: "#FAFAFA",
                 width: "95%",
                 margin: "56px auto"
@@ -31,7 +30,7 @@ const Done = () => {
                     }}>Votemu sudah masuk.</h4>
                 </div>
             </div>
-            
+
             <button style={{
                 width: '182px',
                 height: '62px',
