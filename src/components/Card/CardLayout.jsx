@@ -1,12 +1,12 @@
 import React from 'react'
-import { Container, Card, CardBody, CardTitle, CardFooter, Button, Label } from 'reactstrap'
+import { Container, Card, CardBody, CardTitle, CardFooter } from 'reactstrap'
 
 
 const CardLayout = ({ titlePage, titleCard, children, footer }) => {
     return (
         <Container className="mb-5">
             <center><h1 style={{ marginTop: '83px' }}>{titlePage}</h1>
-                <h1 style={{ borderBottom: 'solid #f7b217 10px', width: '345px', borderRadius: '20px', margin: '20px 0px 60px 0px' }}></h1>
+                <h1 style={{ borderBottom: 'solid #f7b217 10px', width: '345px', borderRadius: '20px', margin: '20px 0px 60px 0px' }}> </h1>
             </center>
             <Card>
                 <CardBody style={{ padding: '60px' }}>

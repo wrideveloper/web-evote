@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { NavLink as Linked } from "react-router-dom";
 import "./header.css";
 import { Navbar, Nav, NavbarToggler, Collapse, NavbarBrand, NavLink, NavItem, Container } from 'reactstrap';
+import { useHistory } from 'react-router-dom'
 function Header() {
+  let history = useHistory();
   const [user, setUser] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   
@@ -13,7 +15,8 @@ function Header() {
     history.push('/')
     window.location.reload()
   };
-
+  console.log(user)
+  
   return (
     <>
     <Navbar dark expand="md">
@@ -26,7 +29,7 @@ function Header() {
                       <NavLink tag={Linked} to="/" exact activeClassName="text-active">Home</NavLink>
                   </NavItem>
                   <NavItem className="persen">
-                      <NavLink tag={Linked} to="/hasil-vote" activeClassName="text-active">Lihat hasil vote</NavLink>
+                      <NavLink tag={Linked} to="/statistik" activeClassName="text-active">Lihat hasil vote</NavLink>
                   </NavItem>
                   <NavItem>
                       <NavLink onClick={handleLogout} activeClassName="text-active">Log Out</NavLink>

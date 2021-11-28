@@ -18,7 +18,7 @@ const LoginPage = () => {
 
     useEffect(() => {
         getAllUsers()
-    }, [])
+    }, [getAllUsers])
 
     const handleSubmit = () => {
         const findUser = users.find(item => item.nim === nim && item)
@@ -45,6 +45,8 @@ const LoginPage = () => {
             }
         }
     }
+
+    console.log(user)
 
     return (
         <div

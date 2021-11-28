@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -18,6 +18,7 @@ const Top = ({ toggleSidebar }) => {
         history.push('/');
         window.location.reload();
     };
+    console.log(user)
 
     return (
         <Navbar
