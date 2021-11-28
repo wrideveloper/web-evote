@@ -1,5 +1,5 @@
 // user
-export { default as HomePage } from './user/Home/Index';
+export { default as HomePage } from './user/Home';
 export { default as HarapanPage } from './user/Harapan';
 export { default as ProfilCaketumPage } from './user/ProfilCaketum';
 export { default as DonePage } from './user/Done';
