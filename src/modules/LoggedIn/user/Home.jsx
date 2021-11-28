@@ -3,6 +3,7 @@ import {
     Button, Modal, ModalBody, ModalFooter,
     Card, CardText, CardBody, CardTitle, CardSubtitle, CardGroup, CardImg, Row, Col
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
@@ -138,6 +139,7 @@ const Home = () => {
                                             </Button>
                                         </div>
                                         <div>
+                                            <Link to="/evote/profile">
                                             <Button
                                                 className="mb-3"
                                                 style={{
@@ -146,6 +148,7 @@ const Home = () => {
                                                 }}>
                                                 Lihat Profil
                                             </Button>
+                                            </Link>
                                         </div>
                                     </CardBody>
                                 </Card>
