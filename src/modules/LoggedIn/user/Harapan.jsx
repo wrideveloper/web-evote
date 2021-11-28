@@ -5,6 +5,7 @@ import axios from 'axios';
 import { dateNumber } from '../../../helper/date';
 import '../../../components/responsiveHarapan.css';
 
+
 export default function Harapan() {
 
     // console.log(dateNumber)
@@ -160,7 +161,6 @@ export default function Harapan() {
                                         </td>                                       
                                         <td className="nama" style={{paddingTop:'5%', paddingBottom: '5%'}}>
                                             {listHarapan.harapan}</td>
-
                                         </tr>
                 
                                         {/* Fetching */}
@@ -174,10 +174,6 @@ export default function Harapan() {
                     </Card>
                 
             </Container>
-                
-                    
-                
-
         </div>
     )
 }

@@ -1,20 +1,28 @@
 .navbar{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 110px;
+    min-height: 100px;
     background-color: #2e2c49;
+    padding: 0 !important;
 }
 .logo{
-    margin-left: 45px;
+    margin-left: 15px;
     height: 50px;
 }
-.nav-links{
+
+.nav-item {
+    margin: 0;
+}
+.nav-link {
+    width: 130px;
+}
+.text-active {
+    color: #F7B217 !important;
+}
+/* .nav-links{
     display: flex;
     justify-content: flex-end;
     list-style: none;
     width: 75%;
-}
+} */
 .home, .hasil, .logout{
     text-decoration: none;
     color: white;
@@ -29,4 +37,12 @@
 }
 .logout{
     margin-right: 60px;
+}
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .nav-link {
+        width: auto;
+    }
+    .nav-item {
+        padding: 10px 0;
+    }
 }

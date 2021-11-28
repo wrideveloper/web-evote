@@ -14,7 +14,7 @@ const Calon = () => {
         try {
             const response = await axios.get('http://evote.ceban-app.com/calon');
             setCalon(response.data)
-            //console.log("Halo ini Data Calon",response.data);
+            // console.log("Halo ini Data Calon",response.data);
         } catch (error) {
             console.error(error);
         }
