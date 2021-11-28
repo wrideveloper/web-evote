@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Button, Row, Col, Container, Card, CardBody, CardTitle, CardSubtitle, FormGroup, Label, Input , Table, CardFooter} from 'reactstrap';
+import { Button, Row, Col, Container, Card, CardBody, CardTitle, CardSubtitle, FormGroup, Label, Input , Table, CardFooter, Pagination} from 'reactstrap';
 import Picker from 'emoji-picker-react';
 import axios from 'axios';
 import { dateNumber } from '../../../helper/date';
-// import './style.css';
+import '../../../components/responsiveHarapan.css';
+
 
 export default function Harapan() {
 
@@ -15,8 +16,6 @@ export default function Harapan() {
         setInputstr( prevInput => prevInput + emojiObject.emoji );
         setShowPicker(false);
     };
-
-    
 
     // const hitung = () => {
 
@@ -72,14 +71,14 @@ export default function Harapan() {
     })
         
     return (
-        <div className="containerHarapan">
-            <center><h1 style={{marginTop: '83px'}}>Sampaikan Harapanmu</h1>
-            <h1 style={{ borderBottom: 'solid #f7b217 10px', width:'345px',borderRadius:'20px', margin:'20px 0px 60px 0px'}}></h1>
+        <div>
+            <center><h1 className="judul" style={{marginTop: '83px'}}>Sampaikan Harapanmu</h1>
+            <h1 style={{ borderBottom: 'solid #f7b217 10px', width:'23%',borderRadius:'20px', margin:'20px 0px 60px 0px'}}></h1>
             </center>
             <Container>
                 <Row>
-                    <Col xs="3" style={{textAlign:'center'}}>
-                        <img src='/images/logo.png' alt="" style={{width: '250px'}}/>
+                    <Col className="inputt" xs="3" style={{textAlign:'center'}}>
+                        <img className="log" src='/images/logo.png' alt="" style={{width: '70%'}}/>
                     </Col>
                     <Col >
                         <Card>
@@ -104,18 +103,19 @@ export default function Harapan() {
                             </CardSubtitle>
                                 <FormGroup>
                                     <Input
+                                    className="inputArea"
                                     id="my-textarea"
                                     name="text"
                                     type="textarea"
                                     maxlength="150" 
                                     placeholder= "Tulis Harapan" 
-                                    style={{textAlign: 'center', height: "230px" , padding: '100px', verticalAlign: 'middle'}}
+                                    style={{height: "230px" , padding: '5%', verticalAlign: 'middle'}}
                                     onChange={(event) => handleInputHarapan(event)}
                                     />
                                     {/* <div className="my-textarea-remaining-chars">150 characters remaining</div> */}
                                 </FormGroup>
                                 {/* Emoticon */}
-                                <div className="picker-container" style={{textAlign: 'right', paddingTop: '40px'}}>
+                                {/* <div className="picker-container" style={{textAlign: 'right', paddingTop: '40px'}}>
                                     <input style={{width: '180px', height: '30px', borderRadius: '50px', padding: '20px', margin: '20px'}}
                                         className="input-style"
                                         value={inputStr}  
@@ -125,7 +125,7 @@ export default function Harapan() {
                                         {showPicker && <Picker 
                                             pickerStyle={{width: '100%'}}
                                             onEmojiClick={onEmojiClick} />}
-                                </div>
+                                </div> */}
                             </CardBody>                         
                             <CardFooter style={{padding: "45px 68px 45px 45px", textAlign: 'right'}}>
                                 <Button onClick={postHarapan} color="warning" style={{color: 'white', width: '150px', borderRadius: '100px'}}>
@@ -139,9 +139,9 @@ export default function Harapan() {
             </Container>
             <br/><br/>
             <Container style={{marginBottom: '50px'}}>
-                 <Row>
+                 
                     <Card>
-                        <CardBody style={{marginLeft: '45px'}}>
+                        <CardBody style={{marginLeft: '5%', marginRight:'5%'}}>
                             <h5 style={{marginTop:'58px'}}><img src="/images/Rectangle 92 .png" alt="" style={{marginRight: '15px', width: '19px'}}></img>Harapan kami</h5>
                             <Table  style={{marginTop:'45px'}}>
                                 <thead >
@@ -156,11 +156,10 @@ export default function Harapan() {
                                                 <>
                                                 <tbody>
                                         <tr>
-                                        <td scope="row" style={{paddingTop:'65px', paddingRight: '60px', paddingBottom: '60px'}}>
+                                        <td className="nama" scope="row" style={{paddingTop:'5%',  paddingBottom: '5%', fontWeight: 'bold'}}>
                                             {listHarapan.nama_pemilih}
-                                        </td>
-                                        
-                                        <td style={{paddingTop:'65px', paddingBottom: '60px'}}>
+                                        </td>                                       
+                                        <td className="nama" style={{paddingTop:'5%', paddingBottom: '5%'}}>
                                             {listHarapan.harapan}</td>
                                         </tr>
                 
@@ -173,12 +172,8 @@ export default function Harapan() {
                             </Table>
                         </CardBody>
                     </Card>
-                </Row>
+                
             </Container>
-                
-                    
-                
-
         </div>
     )
 }
