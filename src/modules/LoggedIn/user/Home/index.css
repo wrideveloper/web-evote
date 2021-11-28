@@ -1,0 +1,33 @@
+
+.title {
+    background-color: #f7b217;
+    font-size: 48px;
+    color: #fce4ae;
+    font-weight: 600;
+    padding: 20px 80px;
+    border-radius: 10px;
+}
+.desc {
+    color: #FFFFFF;
+    letter-spacing: 0.0025em;
+    text-align: center;
+    line-height: 46px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    margin-top: 20px;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .title {
+        font-size: 30px;
+    }
+    .desc {
+        letter-spacing: 0.0025em;
+        text-align: center;
+        line-height: 46px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+    }
+}
