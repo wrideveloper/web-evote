@@ -3,6 +3,7 @@ export { default as HomePage } from './user/Home';
 export { default as HarapanPage } from './user/Harapan';
 export { default as ProfilCaketumPage } from './user/ProfilCaketum';
 export { default as DonePage } from './user/Done';
+export { default as StatistikPage } from './user/Statistik';
 
 // admin
 export { default as DashboardPage } from './admin/Dashboard';

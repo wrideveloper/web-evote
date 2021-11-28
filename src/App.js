@@ -11,7 +11,8 @@ import {
   Calon,
   HasilPemilihan,
   Pemilih,
-  HarapanSaran
+  HarapanSaran,
+  StatistikPage
 } from './modules/LoggedIn';
 
 import {
@@ -53,6 +54,7 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={HomePage} />
                   <Route path="/harapan" component={HarapanPage} />
+                  <Route path="/statistik" component={StatistikPage} />
                   <Route path="/profile-caketum/:id" component={ProfilCaketumPage} />
                   <Route path="/done" component={DonePage} />
                 </Switch>

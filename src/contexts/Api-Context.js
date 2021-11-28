@@ -2,11 +2,13 @@ import React, { createContext, useState } from 'react';
 import APISOURCE from '../constants/Api-Source';
 
 export const MyContext = createContext({
-  users: [], getAllUsers: () => {}, userId: [], getUserById: () => {},
+  users: [], getAllUsers: () => {}, userId: [], getUserById: () => {}, calon: [], getAllCalon: () => {},
 });
+
 const ApiContext = (props) => {
     const [users, setUsers] = useState([])
     const [userId, setUserId] = useState([])
+    const [calon, setCalon] = useState([])
 
     const getAllUsers = async () => {
         const user = await APISOURCE.getListUsers();
@@ -19,8 +21,14 @@ const ApiContext = (props) => {
         setUserId(user);
     };
 
+    const getAllCalon = async () => {
+        const calon = await APISOURCE.getCalon();
+        console.log('line 25 Api Context ~ calon ', calon)
+        setCalon(calon);
+    }
+
     const contextValue = {
-        users, getAllUsers, userId, getUserById 
+        users, getAllUsers, userId, getUserById, calon, getAllCalon 
     };
 
     return (

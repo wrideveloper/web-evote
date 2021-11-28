@@ -41,6 +41,24 @@ class APISOURCE {
         }
     }
 
+    static async getCalon() {
+        try {
+            const response = await axios.get(API_ENDPOINT.calon)
+            return response.data
+        } catch(error) {
+            console.log('line 49 ~ API SOURCE CONSTANT', error)
+        }
+    }
+
+    static async getCountCalonVoteById(id) {
+        try {
+            const response = await axios.get(API_ENDPOINT.countByCalonVoteId(id))
+            return response.data;
+        } catch(error) {
+            console.log('line 58 ~ API SOURCE CONSTANT ', error)
+        }
+    }
+
 }
 
 export default APISOURCE;
