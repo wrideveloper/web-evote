@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { NavLink as Linked } from "react-router-dom";
 import "./header.css";
-import {
-  Navbar, Nav, NavbarToggler, Collapse, NavbarBrand, NavLink, NavItem, Container
-} from 'reactstrap';
+import { Navbar, Nav, NavbarToggler, Collapse, NavbarBrand, NavLink, NavItem, Container } from 'reactstrap';
 function Header() {
   const [user, setUser] = useState([]);
   const [isOpen, setIsOpen] = useState(false);

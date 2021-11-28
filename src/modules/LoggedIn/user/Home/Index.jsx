@@ -30,7 +30,6 @@ const Home = () => {
     try {
       const response = await axios.get("http://evote.ceban-app.com/calon");
       setDataCalon(response.data);
-      //console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +52,6 @@ const Home = () => {
         waktu_vote: dateNumber,
       });
       alert("Vote berhasil!");
-      //console.log(response);
     } catch (error) {
       console.error(error);
     }
