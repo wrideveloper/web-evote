@@ -32,7 +32,7 @@ export default function Harapan() {
 
     async function getHarapan() {
         try {
-            const response = await axios.get('http://evote.ceban-app.com/vote');
+            const response = await axios.get('https://evote.ceban-app.com/vote');
             setHarapan(response.data)
             console.log("Halo ini Data Calon", response.data);
         } catch (error) {
@@ -44,7 +44,7 @@ export default function Harapan() {
 
     async function postHarapan() {
         try {
-            const response = await axios.post('http://evote.ceban-app.com/vote', {
+            const response = await axios.post('https://evote.ceban-app.com/vote', {
                 id_calon: '3',
                 id_user: '3',
                 harapan: inputHarapan,

@@ -14,7 +14,7 @@ const ProfilCaketum = (props) => {
     React.useEffect(() => {
         const getCalon = async () => {
             try {
-                const response = await axios.get(`http://evote.ceban-app.com/calon/${id}`);
+                const response = await axios.get(`https://evote.ceban-app.com/calon/${id}`);
                 setCalon(response.data);
                 console.log("halo ini data calon", response);
             } catch (error) {

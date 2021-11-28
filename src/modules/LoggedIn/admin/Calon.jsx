@@ -10,21 +10,20 @@ const Calon = () => {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    async function getCalon() {
-        try {
-            const response = await axios.get('http://evote.ceban-app.com/calon');
-            setCalon(response.data)
-            // console.log("Halo ini Data Calon",response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     //console.log(getCalon);
 
     React.useEffect(() => {
+        async function getCalon() {
+            try {
+                const response = await axios.get('http://evote.ceban-app.com/calon');
+                setCalon(response.data)
+                // console.log("Halo ini Data Calon",response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
         getCalon()
-    })
+    }, [])
 
     return (
         <div>
@@ -83,13 +82,13 @@ const Calon = () => {
                     </tr>
                 </thead>
                 {
-                calon.map((listCalon) => (
+                    calon.map((listCalon) => (
                         <>
                             <tbody style={{ height: '85px' }}>
                                 <tr>
                                     <td>{listCalon.nama}</td>
                                     <td>{listCalon.kelas}</td>
-                                    <td><img src={listCalon.foto} alt="" height="75px"/></td>
+                                    <td><img src={listCalon.foto} alt="" height="75px" /></td>
                                     <td><CompIcons name="test" /></td>
                                 </tr>
                                 {/* <tr>

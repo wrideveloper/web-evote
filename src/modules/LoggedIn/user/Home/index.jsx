@@ -28,7 +28,7 @@ const Home = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://evote.ceban-app.com/calon");
+      const response = await axios.get("https://evote.ceban-app.com/calon");
       setDataCalon(response.data);
     } catch (error) {
       console.error(error);
@@ -45,7 +45,7 @@ const Home = () => {
 
   const postVote = async () => {
     try {
-      await axios.post("http://evote.ceban-app.com/vote", {
+      await axios.post("https://evote.ceban-app.com/vote", {
         id_calon: calon,
         id_user: user.id_user,
         harapan: "",
