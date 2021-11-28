@@ -18,7 +18,8 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { dateNumber } from "../../../helper/date";
+import { dateNumber } from "../../../../helper/date";
+import "./index.css";
 
 const Home = () => {
   const [user, setUser] = useState([]);
@@ -69,41 +70,14 @@ const Home = () => {
           backgroundImage: 'url("../images/home-image.png")',
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          display: "flex",
           justifyContent: "center",
           padding: "150px 0px",
         }}
       >
-        <div>
-          <center>
-            <span
-              style={{
-                backgroundColor: "#f7b217",
-                fontSize: "48px",
-                color: "#fce4ae",
-                borderRadius: "10px",
-                fontWeight: "600",
-                padding: "20px 80px",
-              }}
-            >
-              E-Vote Pilketum WRI 2021
-            </span>
-            <br />
-            <br />
-            <br />
-          </center>
-          <h4
-            style={{
-              color: "#FFFFFF",
-              letterSpacing: "0.0025em",
-              textAlign: "center",
-              lineHeight: "46px",
-              fontStyle: "normal",
-              fontWeight: "normal",
-              fontSize: "34px",
-            }}
-          >
-            "Buatlah Perubahan Dengan Pilihanmu"
-          </h4>
+        <div className="hero">
+          <span className="title">E-Vote Pilketum WRI 2021</span>
+          <h4 className="desc">"Buatlah Perubahan Dengan Pilihanmu"</h4>
         </div>
       </div>
       <Card
@@ -160,7 +134,7 @@ const Home = () => {
                 <Card
                   key={menampilkanData.id_calon}
                   className="m-4"
-                  style={{ maxWidth: "400px", borderRadius: "10px" }}
+                  style={{ maxWidth: "450px", borderRadius: "10px" }}
                 >
                   <CardImg
                     className="d-flex justify-content-left"
