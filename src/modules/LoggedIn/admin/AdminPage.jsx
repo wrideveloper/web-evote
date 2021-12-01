@@ -5,7 +5,7 @@ import Dashboard from './Dashboard'
 const AdminPage = () => {
     return (
         <Switch>
-            <Route path="/admin" component={Dashboard} />
+            <Route path="/" component={Dashboard} />
             <Redirect to="/admin" />
         </Switch>
     )

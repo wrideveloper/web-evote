@@ -70,7 +70,10 @@ const Home = () => {
           backgroundRepeat: "no-repeat",
           display: "flex",
           justifyContent: "center",
-          padding: "150px 0px",
+          alignItems: "center",
+          flexDirection: "column",
+          minHeight: "100vh",
+          padding: "0 5px"
         }}
       >
         <div className="hero">
@@ -79,17 +82,10 @@ const Home = () => {
         </div>
       </div>
       <Card
-        className="mb-3"
-        style={{
-          margin: "50px",
-          padding: "50px 70px",
-          borderWidth: "2px",
-          borderColor: "#e9e8f6",
-          borderRadius: "10px",
-        }}
+        className="card__welcome"
       >
         <CardBody
-          style={{ borderLeft: "solid #f7b217 15px", padding: "20px 50px" }}
+          style={{ borderLeft: "solid #f7b217 15px", padding: "20px 35px" }}
         >
           <Row>
             <Col style={{ paddingBottom: "30px" }}>
