@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { dateNumber } from "../../../../helper/date";
-import "./index.css";
+import "./Home.css";
 
 const Home = () => {
   const [user, setUser] = useState([]);

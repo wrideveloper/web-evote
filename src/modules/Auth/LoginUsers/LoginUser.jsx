@@ -6,6 +6,7 @@ import md5 from 'crypto-js/md5'
 import { useHistory } from 'react-router-dom'
 import { date } from '../../../helper/date'
 import { MyContext } from '../../../contexts/Api-Context'
+import "./loginUser.css"
 
 const LoginPage = () => {
     let history = useHistory()
@@ -49,13 +50,9 @@ const LoginPage = () => {
     console.log(user)
 
     return (
-        <div
+        <div className="containerLogin"
             style={{
                 backgroundImage: `url("../images/bg-login.png")`,
-                backgroundSize: '100% 100%',
-                width: '100%',
-                height: '100vh',
-                padding: '15px 50px'
             }}>
             <div style={{
                 display: 'flex',
@@ -64,7 +61,7 @@ const LoginPage = () => {
                 fontWeight: 'bold'
             }}>
                 <img src="../images/logo-wri-banner.png" alt="Logo WRI" />
-                <p style={{ color: '#fff' }}>{date}</p>
+                <p className="date">{date}</p>
             </div>
             <div style={{
                 marginTop: '8%',

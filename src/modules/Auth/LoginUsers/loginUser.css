@@ -1,0 +1,22 @@
+.containerLogin {
+    background-size: 100% 100%;
+    width: 100%;
+    min-height: 100vh;
+    padding: 15px 50px;
+}
+
+.date {
+    color: #fff;
+}
+
+
+@media (max-width: 545px) { 
+    .containerLogin {
+        background-size: cover;
+    }
+
+    .date {
+        display: none;
+    }
+
+}
