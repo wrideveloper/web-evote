@@ -6,19 +6,31 @@ import axios from 'axios'
 
 const Statistik = () => {
     const [totalVote, setTotalVote] = useState(0);
+    const [allScore, setAllScore] = useState([]);
 
     useEffect(() => {
         const getTotalVote = async () => {
             try {
                 const request = await axios.get('https://evote.ceban-app.com/vote/get/totalvote');
-                // console.log(request.data)
+                // console.log(request)
                 setTotalVote(request.data)
             } catch (error) {
                 console.log(error)
             }
         }
 
+        const getAllScore = async () => {
+            try {
+                const request = await axios.get('https://evote.ceban-app.com/vote/get/score');
+                console.log(request.data)
+                setAllScore(request.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
         getTotalVote()
+        getAllScore()
     }, [])
 
     const Footer = (
@@ -31,13 +43,22 @@ const Statistik = () => {
             titleCard="Voting Sementara"
             footer={Footer}
         >
-            <ProgressBar max={100} value={86} />
-            <ProgressBar max={100} value={20} />
-            <ProgressBar max={100} value={80} />
+            {
+                allScore !== [] &&
+                allScore.map(item => (
+                    <ProgressBar max={50} value={item.total_vote} index={item.id_calon} />
+                ))
+
+            }
+
             <hr style={{ width: '50%', margin: '50px 0' }} />
-            <div className="d-md-flex">
-                <p>C1: Shawn Mendes</p>
-                <p style={{ marginLeft: 20 }}>C2: Naufal Yukafi</p>
+            <div className="d-md-flex flex-wrap" style={{ maxWidth: '30%' }}>
+                {
+                    allScore !== [] &&
+                    allScore.map(item => (
+                        <p style={{ marginRight: 20 }}>C{item.id_calon}: {item.nama}</p>
+                    ))
+                }
             </div>
         </CardLayout>
     )
