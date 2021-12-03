@@ -38,7 +38,7 @@ const Pemilih = () => {
         role: role
       });
       alert('Data Berhasil Ditambahkan');
-      // console.log(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -141,19 +141,17 @@ const Pemilih = () => {
           </tr>
         </thead>
         {
-          pemilih.map((listPemilih) => (
-            <>
-                <tbody>
-                  <tr>
-                    <td scope="row">{listPemilih.nim}</td>
-                    <td>{listPemilih.nama}</td>
-                    <td>{listPemilih.miniclass}</td>
-                    <td>
-                      <CompIcons />
-                    </td>
-                  </tr>
-                </tbody>
-            </>
+          pemilih.map((listPemilih,i) => (
+            <tbody key={i}>
+              <tr>
+                <td>{listPemilih.nim}</td>
+                <td>{listPemilih.nama}</td>
+                <td>{listPemilih.miniclass}</td>
+                <td>
+                  <CompIcons />
+                </td>
+              </tr>
+            </tbody>
           ))
         }
       </Table>
