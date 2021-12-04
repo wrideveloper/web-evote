@@ -1,4 +1,4 @@
-.box{
+.box {
     border: 1px #B2B2B2 solid;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
@@ -7,25 +7,26 @@
     margin: auto;
 }
 
-.total-suara{
+.total-suara {
     font-weight: bold;
 }
 
-.calon{
+.calon {
     margin-top: -12px;
 }
 
-.contents{
+.contents {
     margin: auto;
 }
 
-.deskripsi{
+.deskripsi {
     font-weight: bold;
     padding-top: 15%;
 }
 
-.paragraf{
-    background-color: #f0ecec;
+.paragraf {
+    background-color: #dfdfdf;
+
     width: 70%;
     margin-top: 75px;
     margin-left: 80px;
@@ -33,9 +34,8 @@
     border-radius: 3%;
 }
 
-.total-suara-final{
+.total-suara-final {
     text-align: center;
     padding: 4%;
     font-weight: bold;
 }
-
