@@ -52,7 +52,7 @@ const Statistik = () => {
             }
 
             <hr style={{ width: '50%', margin: '50px 0' }} />
-            <div className="d-md-flex flex-wrap" style={{ maxWidth: '30%' }}>
+            <div className="d-md-flex flex-wrap">
                 {
                     allScore !== [] &&
                     allScore.map(item => (
