@@ -55,6 +55,22 @@ const Pemilih = () => {
         setRole(event.target.value);
     }
 
+    const [user, setUser] = useState([]);
+
+    const getUser = async () => {
+        try {
+            const response = await axios.get('http://evote.ceban-app.com/user');
+            setUser(response.data);
+            //console.log("halo ini data calon", response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    React.useEffect(() => {
+        getUser()
+    }, [user])
+
     return (
         <div>
             <Button type="button" className="mb-3" style={{ backgroundColor: '#3F3D56' }} onClick={handleModal}>Tambah Pemilih</Button>
@@ -95,33 +111,32 @@ const Pemilih = () => {
                     <Button style={{ backgroundColor: '#547a95' }} onClick={postPemilih}>Tambah</Button>
                 </ModalFooter>
             </Modal>
+
             <Table striped bordered hover>
                 <thead>
                     <tr style={{ textAlign: 'center', cellpadding: '10px' }}>
                         <th>Nim</th>
                         <th>Nama</th>
-                        <th>Kelas</th>
+                        <th>Miniclass</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <CompIcons />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <CompIcons />
-                        </td>
-                    </tr>
-                </tbody>
+                {
+                    user.map((data) => (
+                        <>
+                            <tbody>
+                                <tr>
+                                    <td>{data.nim}</td>
+                                    <td>{data.nama}</td>
+                                    <td>{data.miniclass}</td>
+                                    <td>
+                                        <CompIcons />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </>
+                    ))
+                }
             </Table>
         </div>
     )
