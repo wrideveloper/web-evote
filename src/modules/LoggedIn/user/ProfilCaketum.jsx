@@ -1,17 +1,49 @@
-import React from 'react'
-import { Button } from "reactstrap";
+import React, { useState, useEffect, useContext } from 'react'
+import {
+    Button,
+    Modal,
+    ModalBody,
+    ModalFooter,
+} from "reactstrap";
 import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MyContext } from '../../../contexts/Api-Context';
+import { dateNumber } from '../../../helper/date';
 
-const ProfilCaketum = (props) => {
+const ProfilCaketum = () => {
     let { id } = useParams();
-    console.log("idnya nih", id)
-
+    let history = useHistory();
+    const { vote, getAllVote, } = useContext(MyContext);
     const [calon, setCalon] = useState([]);
+    const [user, setUser] = useState([]);
+    const [modal, setModal] = useState(false);
 
-    React.useEffect(() => {
+    const handleModal = () => setModal(prev => !prev);
+
+    const postVote = async () => {
+        try {
+            await axios.post("https://evote.ceban-app.com/vote", {
+                id_calon: id,
+                id_user: user.id_user,
+                harapan: "",
+                waktu_vote: dateNumber,
+            });
+            history.push('/done')
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const onModal = () => {
+        handleModal()
+        postVote()
+    }
+
+
+    useEffect(() => {
         const getCalon = async () => {
             try {
                 const response = await axios.get(`https://evote.ceban-app.com/calon/${id}`);
@@ -21,14 +53,22 @@ const ProfilCaketum = (props) => {
                 console.error(error);
             }
         }
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.parse(loggedInUser);
+            setUser(foundUser);
+        }
+        getAllVote()
         getCalon()
-    }, [id])
+    }, [id, getAllVote])
+
+    if (!vote) return ""
+
+    const filterVoteSameNimUser = vote.length !== 0 && vote.filter(item => item.nim_pemilih === user.nim)
 
 
     return (
         <div>
-
-            {/* profile caketum */}
             {
                 calon.map((data) => (
                     <>
@@ -96,8 +136,83 @@ const ProfilCaketum = (props) => {
                 <Link to="/">
                     <Button style={{ padding: '20px 80px', borderRadius: '50px', marginRight: '57px', border: '2px solid #E9E8F6', backgroundColor: 'white', color: 'black', fontSize: '14px', fontWeight: 'bold' }}>Kembali</Button>
                 </Link>
-
-                <Button style={{ padding: '20px 80px', borderRadius: '50px', marginRight: '10px', backgroundColor: '#F7B217', fontSize: '14px', fontWeight: 'bold', border: 'none' }}>Vote</Button>
+                {
+                    filterVoteSameNimUser.length > 0 ?
+                        <Button
+                            className="mb-1"
+                            style={{
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                padding: "15px 60px",
+                                borderRadius: "25px",
+                            }}
+                            disabled
+                        >Berhasil Voting</Button>
+                        :
+                        <Button
+                            className="mb-1"
+                            color="warning"
+                            style={{
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                padding: "15px 60px",
+                                borderRadius: "25px",
+                            }}
+                            onClick={() => {
+                                handleModal();
+                            }}
+                        >
+                            Vote
+                        </Button>
+                }
+                <Modal isOpen={modal} size="lg">
+                    <center>
+                        <ModalBody style={{ color: "#2e2c49" }}>
+                            <FontAwesomeIcon
+                                className="mt-5"
+                                icon={faExclamationTriangle}
+                                style={{ minWidth: "65px", minHeight: "65px", color: "#ff6159" }}
+                            />
+                            <br />
+                            <br />
+                            <h4>Apakah Kamu yakin?</h4>
+                            <br />
+                            <p className="text-muted mb-5">
+                                Kamu hanya bisa memilih satu Caketum. NIM yang sudah digunakan
+                                untuk vote tidak bisa digunakan lagi
+                            </p>
+                        </ModalBody>
+                    </center>
+                    <ModalFooter style={{ backgroundColor: "#e9e8f6" }}>
+                        <Button
+                            style={{
+                                backgroundColor: "#ffffff",
+                                color: "black",
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                padding: "15px 41px",
+                                borderWidth: "0px",
+                                borderRadius: "25px",
+                            }}
+                            onClick={handleModal}
+                        >
+                            Kembali
+                        </Button>
+                        <Button
+                            style={{
+                                backgroundColor: "#f7b217",
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                padding: "15px 40px",
+                                borderWidth: "0px",
+                                borderRadius: "25px",
+                            }}
+                            onClick={onModal}
+                        >
+                            Vote Now
+                        </Button>
+                    </ModalFooter>
+                </Modal>
             </div>
             {/* button end */}
         </div>
