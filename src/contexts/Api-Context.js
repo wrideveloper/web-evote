@@ -1,14 +1,23 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 import APISOURCE from '../constants/Api-Source';
 
 export const MyContext = createContext({
-  users: [], getAllUsers: () => {}, userId: [], getUserById: () => {}, calon: [], getAllCalon: () => {},
+  users: [], 
+  getAllUsers: () => {}, 
+  userId: [], 
+  getUserById: () => {}, 
+  calon: [], 
+  getAllCalon: () => {},
+  vote: [],
+  getAllVote: () => {},
+  setVote: () => {}
 });
 
 const ApiContext = (props) => {
     const [users, setUsers] = useState([])
     const [userId, setUserId] = useState([])
     const [calon, setCalon] = useState([])
+    const [vote, setVote] = useState([])
 
     const getAllUsers = async () => {
         const user = await APISOURCE.getListUsers();
@@ -27,8 +36,23 @@ const ApiContext = (props) => {
         setCalon(calon);
     }
 
+
+    const getAllVote = useCallback( async () => {
+        const vote = await APISOURCE.getAllVote();
+        // console.log('line 42 Api Context ~ vote ', vote)
+        setVote(vote);
+    }, [])
+
     const contextValue = {
-        users, getAllUsers, userId, getUserById, calon, getAllCalon 
+        users, 
+        getAllUsers, 
+        userId, 
+        getUserById, 
+        calon, 
+        getAllCalon, 
+        vote, 
+        setVote,
+        getAllVote,
     };
 
     return (

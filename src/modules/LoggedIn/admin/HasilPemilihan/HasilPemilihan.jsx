@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import '../../../../components/Pemilihan.css';
 import DeskripsiHasilPemilihan from '../../../../components/DeskripsiHasilPemilihan';
+import axios from 'axios';
 
 const HasilPemilihan = () => {
+     const [hasil, setHasil] = useState([])
+    // const [modal, setModal] = useState(false);
+    
+
+    //console.log(getCalon);
+
+    React.useEffect(() => {
+        async function getHasil() {
+            try {
+                const response = await axios.get('https://evote.ceban-app.com/vote');
+                setHasil(response.data)
+                // console.log("Halo ini Data Calon",response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        getHasil()
+    }, [])
+
     return (
         <div>
             <Container>
@@ -30,32 +50,28 @@ const HasilPemilihan = () => {
             <Table striped bordered hover className="mt-4">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nama</th>
-                        <th>Kelas</th>
-                        <th></th>
+                        <th>Memilih</th>
+                        <th>Waktu</th>
+                        
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
+                 {
+                    hasil.map((listHasil) => (
+                        <>
+                            <tbody style={{ height: '85px' }}>
+                                <tr>
+                                    <td>{listHasil.nama_pemilih}</td>
+                                    <td>{listHasil.memilih_calon}</td>
+                                     <td>{listHasil.waktu_vote}</td>
+                                    
+                                   
+                                </tr>
+                               
+                            </tbody>
+                        </>
+                    ))
+                }
             </Table>
         </div>
     )
