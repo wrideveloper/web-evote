@@ -25,14 +25,14 @@ function Header() {
         <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
           <Collapse isOpen={isOpen} navbar className="justify-content-end">
               <Nav className="mr-auto" navbar>
-                  <NavItem>
-                      <NavLink tag={Linked} to="/" exact activeClassName="text-active">Home</NavLink>
+                  <NavItem className="nav-items">
+                      <NavLink tag={Linked} to="/" exact activeClassName="nav-links text-active" className="nav-links">Home</NavLink>
                   </NavItem>
-                  <NavItem className="persen">
-                      <NavLink tag={Linked} to="/statistik" activeClassName="text-active">Lihat hasil vote</NavLink>
+                  <NavItem className="persen nav-items">
+                      <NavLink tag={Linked} to="/statistik" activeClassName="nav-links text-active" className="nav-links">Lihat hasil vote</NavLink>
                   </NavItem>
-                  <NavItem>
-                      <NavLink onClick={handleLogout} activeClassName="text-active">Log Out</NavLink>
+                  <NavItem className="nav-items">
+                      <NavLink onClick={handleLogout} activeClassName="nav-links text-active"  className="nav-links">Log Out</NavLink>
                   </NavItem>
               </Nav>
           </Collapse>

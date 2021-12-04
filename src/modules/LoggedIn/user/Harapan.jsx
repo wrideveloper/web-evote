@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Button, Row, Col, Container, Card, CardBody, CardTitle, CardSubtitle, FormGroup, Label, Input, Table, CardFooter } from 'reactstrap';
 import axios from 'axios';
 import { dateNumber } from '../../../helper/date';
 import '../../../components/responsiveHarapan.css';
-
+import { MyContext } from '../../../contexts/Api-Context'
+import { convertToCapitalFirstLetter } from '../../../helper/string';
 export default function Harapan() {
-
+    const { vote, getAllVote, setVote } = useContext(MyContext)
+    const [user, setUser] = useState([])
     // console.log(dateNumber)
     // const [inputStr, setInputstr] = useState('');
     // const [showPicker, setShowPicker] = useState(false);
@@ -28,33 +30,24 @@ export default function Harapan() {
     //     });
     // }
 
-    const [harapan, setHarapan] = useState([])
-
-    async function getHarapan() {
-        try {
-            const response = await axios.get('https://evote.ceban-app.com/vote');
-            setHarapan(response.data)
-            console.log("Halo ini Data Calon", response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     const [inputHarapan, setInputHarapan] = useState("")
 
+    const newVote = {
+        id_user: user.id_user,
+        id_calon: 4,
+        harapan: inputHarapan,
+        waktu_vote: dateNumber
+    }
     async function postHarapan() {
-        try {
-            const response = await axios.post('https://evote.ceban-app.com/vote', {
-                id_calon: '3',
-                id_user: '3',
-                harapan: inputHarapan,
-                waktu_vote: dateNumber
-            });
-            alert('berhasil');
-            console.log(response);
-        } catch (error) {
-            console.error(error);
-        }
+        await axios.post('https://evote.ceban-app.com/vote', newVote)
+            .then(() => {
+                alert('Terima kasih, Anda Telah Mengisi Form Harapan')
+                setVote([...vote, newVote])
+            }).catch(err => {
+                alert(err)
+                console.error(err)
+            })
+        setInputHarapan("")
     }
 
     const handleInputHarapan = (event) => {
@@ -64,9 +57,16 @@ export default function Harapan() {
 
     //console.log(getCalon);
 
-    React.useEffect(() => {
-        getHarapan()
-    })
+    useEffect(() => {
+        getAllVote()
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.parse(loggedInUser);
+            setUser(foundUser);
+        }
+    }, [getAllVote, vote])
+
+    const FilterHarapan = vote.length > 0 && vote.filter(item => item.harapan !== "")
 
     return (
         <div>
@@ -90,7 +90,7 @@ export default function Harapan() {
                                     Nama
                                 </CardSubtitle>
                                 <CardTitle tag="h5">
-                                    <h5>Anonymous</h5><br />
+                                    <h5>{convertToCapitalFirstLetter(user.nama)}</h5><br />
                                 </CardTitle>
                                 <CardSubtitle
                                     className="mb-2 text-muted"
@@ -105,10 +105,11 @@ export default function Harapan() {
                                         id="my-textarea"
                                         name="text"
                                         type="textarea"
-                                        maxlength="150"
+                                        maxLength="150"
                                         placeholder="Tulis Harapan"
                                         style={{ height: "230px", padding: '5%', verticalAlign: 'middle' }}
                                         onChange={(event) => handleInputHarapan(event)}
+                                        value={inputHarapan}
                                     />
                                     {/* <div className="my-textarea-remaining-chars">150 characters remaining</div> */}
                                 </FormGroup>
@@ -142,31 +143,20 @@ export default function Harapan() {
                     <CardBody style={{ marginLeft: '5%', marginRight: '5%' }}>
                         <h5 style={{ marginTop: '58px' }}><img src="/images/Rectangle 92 .png" alt="" style={{ marginRight: '15px', width: '19px' }}></img>Harapan kami</h5>
                         <Table style={{ marginTop: '45px' }}>
-                            <thead >
-                                <tr >
-
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            {
-                                harapan.map((listHarapan) => (
-                                    <>
-                                        <tbody>
-                                            <tr>
-                                                <td className="nama" style={{ paddingTop: '5%', paddingBottom: '5%', fontWeight: 'bold' }}>
-                                                    {listHarapan.nama_pemilih}
-                                                </td>
-                                                <td className="nama" style={{ paddingTop: '5%', paddingBottom: '5%' }}>
-                                                    {listHarapan.harapan}</td>
-                                            </tr>
-
-                                            {/* Fetching */}
-                                        </tbody>
-                                    </>
-                                ))
-                            }
-
+                            <tr />
+                            <tbody>
+                                {
+                                    FilterHarapan && FilterHarapan.map((listHarapan) => (
+                                        <tr key={listHarapan.id_vote}>
+                                            <td className="nama w-25" style={{ paddingTop: '5%', paddingBottom: '5%', fontWeight: 'bold' }}>
+                                                {listHarapan.nama_pemilih}
+                                            </td>
+                                            <td className="nama" style={{ paddingTop: '5%', paddingBottom: '5%' }}>
+                                                {listHarapan.harapan}</td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
                         </Table>
                     </CardBody>
                 </Card>

@@ -15,7 +15,7 @@ const Calon = () => {
     React.useEffect(() => {
         async function getCalon() {
             try {
-                const response = await axios.get('http://evote.ceban-app.com/calon');
+                const response = await axios.get('https://evote.ceban-app.com/calon');
                 setCalon(response.data)
                 // console.log("Halo ini Data Calon",response.data);
             } catch (error) {

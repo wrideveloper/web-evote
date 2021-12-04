@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Button,
   Modal,
@@ -12,20 +12,24 @@ import {
   CardImg,
   Row,
   Col,
-  Container,
+  Container
 } from "reactstrap";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { dateNumber } from "../../../../helper/date";
+import { useHistory } from 'react-router-dom'
 import "./Home.css";
+import { MyContext } from "../../../../contexts/Api-Context";
 
 const Home = () => {
   const [user, setUser] = useState([]);
   const [calon, setCalon] = useState("");
+  // const [vote, setVote] = useState([]);
   const [dataCalon, setDataCalon] = useState([]);
-
+  const history = useHistory()
+  const { vote, getAllVote, } = useContext(MyContext);
   const getData = async () => {
     try {
       const response = await axios.get("https://evote.ceban-app.com/calon");
@@ -41,7 +45,8 @@ const Home = () => {
       const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
     }
-  }, [dataCalon]);
+    getAllVote()
+  }, [dataCalon, getAllVote]);
 
   const postVote = async () => {
     try {
@@ -51,7 +56,7 @@ const Home = () => {
         harapan: "",
         waktu_vote: dateNumber,
       });
-      alert("Vote berhasil!");
+      history.push('/done')
     } catch (error) {
       console.error(error);
     }
@@ -61,6 +66,10 @@ const Home = () => {
 
   const handleModal = () => setModal(!modal);
 
+  if (!vote) return ""
+
+  const filterVoteSameNimUser = vote.length !== 0 && vote.filter(item => item.nim_pemilih === user.nim)
+
   return (
     <>
       <div
@@ -68,12 +77,13 @@ const Home = () => {
           backgroundImage: 'url("../images/home-image.png")',
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
           minHeight: "100vh",
-          padding: "0 5px"
+          padding: "0 5px",
         }}
       >
         <div className="hero">
@@ -81,9 +91,7 @@ const Home = () => {
           <h4 className="desc">"Buatlah Perubahan Dengan Pilihanmu"</h4>
         </div>
       </div>
-      <Card
-        className="card__welcome"
-      >
+      <Card className="card__welcome">
         <CardBody
           style={{ borderLeft: "solid #f7b217 15px", padding: "20px 35px" }}
         >
@@ -124,7 +132,7 @@ const Home = () => {
         <Container>
           <Row className="mb-5 justify-content-center">
             {dataCalon.map((menampilkanData) => (
-              <Col lg="4" sm="12">
+              <Col lg="4" sm="12" key={menampilkanData.id_calon}>
                 <Card
                   key={menampilkanData.id_calon}
                   className="m-4"
@@ -163,22 +171,37 @@ const Home = () => {
                     <CardText>"{menampilkanData.visi}"</CardText>
 
                     <div>
-                      <Button
-                        className="mb-1"
-                        color="warning"
-                        style={{
-                          fontSize: "12px",
-                          fontWeight: "bold",
-                          padding: "15px 60px",
-                          borderRadius: "25px",
-                        }}
-                        onClick={() => {
-                          handleModal();
-                          setCalon(menampilkanData.id_calon);
-                        }}
-                      >
-                        Vote
-                      </Button>
+                      {
+                        filterVoteSameNimUser.length > 0 ?
+                          <Button
+                            className="mb-1"
+                            style={{
+                              fontSize: "12px",
+                              fontWeight: "bold",
+                              padding: "15px 60px",
+                              borderRadius: "25px",
+                            }}
+                            disabled
+                          >Berhasil Voting</Button>
+                          :
+                          <Button
+                            className="mb-1"
+                            color="warning"
+                            style={{
+                              fontSize: "12px",
+                              fontWeight: "bold",
+                              padding: "15px 60px",
+                              borderRadius: "25px",
+                            }}
+                            onClick={() => {
+                              handleModal();
+                              setCalon(menampilkanData.id_calon);
+                            }}
+                          >
+                            Vote
+                          </Button>
+                      }
+
                     </div>
                     <div>
                       <Link to={`/profile-caketum/${menampilkanData.id_calon}`}>

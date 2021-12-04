@@ -148,32 +148,28 @@ const HasilPemilihan = () => {
             <Table striped bordered hover className="mt-4">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nama</th>
-                        <th>Kelas</th>
-                        <th></th>
+                        <th>Memilih</th>
+                        <th>Waktu</th>
+                        
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
+                 {
+                    hasil.map((listHasil) => (
+                        <>
+                            <tbody style={{ height: '85px' }}>
+                                <tr>
+                                    <td>{listHasil.nama_pemilih}</td>
+                                    <td>{listHasil.memilih_calon}</td>
+                                     <td>{listHasil.waktu_vote}</td>
+                                    
+                                   
+                                </tr>
+                               
+                            </tbody>
+                        </>
+                    ))
+                }
             </Table>
         </div>
     )

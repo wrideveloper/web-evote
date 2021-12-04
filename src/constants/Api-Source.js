@@ -59,6 +59,15 @@ class APISOURCE {
         }
     }
 
+    static async getAllVote() {
+        try {
+            const response = await axios.get(API_ENDPOINT.vote)
+            return response.data;
+    } catch(error) {
+            console.log('line 67 ~ API SOURCE CONSTANT ', error)
+        }
+    }
+
 }
 
 export default APISOURCE;
