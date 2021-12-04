@@ -3,7 +3,7 @@
 }
 .title {
     background-color: #f7b217;
-    font-size: 28px;
+    font-size: 40px;
     color: #fce4ae;
     font-weight: 600;
     padding: 20px 80px;
@@ -18,19 +18,19 @@
     line-height: 46px;
     font-style: normal;
     font-weight: normal;
-    font-size: 34px;
+    font-size:28px;
     margin-top: 20px;
 }
 
 .card__welcome {
     margin: 50px;
     padding: 50px 70px;
-    borderWidth: 2px;
-    borderColor: #e9e8f6;
-    borderRadius: 10px;
+    border-width: 2px;
+    border-color: #e9e8f6;
+    border-radius: 10px;
 }
 
-@media (max-width: 600px) { 
+@media (max-width: 640px) { 
     .title {
         font-size: 20px;
         padding: 10px 20px;

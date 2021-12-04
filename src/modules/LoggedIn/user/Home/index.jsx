@@ -77,12 +77,13 @@ const Home = () => {
           backgroundImage: 'url("../images/home-image.png")',
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
           minHeight: "100vh",
-          padding: "0 5px"
+          padding: "0 5px",
         }}
       >
         <div className="hero">
@@ -90,9 +91,7 @@ const Home = () => {
           <h4 className="desc">"Buatlah Perubahan Dengan Pilihanmu"</h4>
         </div>
       </div>
-      <Card
-        className="card__welcome"
-      >
+      <Card className="card__welcome">
         <CardBody
           style={{ borderLeft: "solid #f7b217 15px", padding: "20px 35px" }}
         >
