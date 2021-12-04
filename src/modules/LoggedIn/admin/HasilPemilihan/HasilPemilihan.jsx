@@ -10,6 +10,7 @@ const HasilPemilihan = () => {
     const [totalCalon2, setVoteCalon2] = useState([])
     const [totalCalon3, setVoteCalon3] = useState([])
     const [totalSemuaVote, setTotalSemuaVote] = useState([])
+    const [hasil, setHasil] = useState([])
 
     async function getCalonId1() {
         try {
@@ -51,13 +52,22 @@ const HasilPemilihan = () => {
         }
     }
 
+    async function getAllVote() {
+        try {
+            const response = await axios.get('https://evote.ceban-app.com/vote');
+            setHasil(response.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     React.useEffect(() => {
         getsemuaTotalVote()
         getCalonId1()
         getCalonId2()
         getCalonId3()
-    })
+        getAllVote()
+    }, [])
 
     return (
         <div>
@@ -83,10 +93,10 @@ const HasilPemilihan = () => {
                                             }
                                             <CardSubtitle className="mb-2 text-muted" tag="h6">
                                                 Total Suara
-                                                    </CardSubtitle>
+                                            </CardSubtitle>
                                             <CardText>
                                                 Calon 1
-                                                    </CardText>
+                                            </CardText>
                                         </CardBody>
                                     </Col>
                                     <Col xs="4">
@@ -102,10 +112,10 @@ const HasilPemilihan = () => {
                                             }
                                             <CardSubtitle className="mb-2 text-muted" tag="h6">
                                                 Total Suara
-                                                    </CardSubtitle>
+                                            </CardSubtitle>
                                             <CardText>
                                                 Calon 2
-                                                    </CardText>
+                                            </CardText>
                                         </CardBody>
                                     </Col>
                                     <Col xs="4">
@@ -121,10 +131,10 @@ const HasilPemilihan = () => {
                                             }
                                             <CardSubtitle className="mb-2 text-muted" tag="h6">
                                                 Total Suara
-                                                    </CardSubtitle>
+                                            </CardSubtitle>
                                             <CardText>
                                                 Calon 3
-                                                    </CardText>
+                                            </CardText>
                                         </CardBody>
                                     </Col>
                                 </Row>
@@ -151,21 +161,21 @@ const HasilPemilihan = () => {
                         <th>Nama</th>
                         <th>Memilih</th>
                         <th>Waktu</th>
-                        
+
                     </tr>
                 </thead>
-                 {
+                {
                     hasil.map((listHasil) => (
                         <>
                             <tbody style={{ height: '85px' }}>
                                 <tr>
                                     <td>{listHasil.nama_pemilih}</td>
                                     <td>{listHasil.memilih_calon}</td>
-                                     <td>{listHasil.waktu_vote}</td>
-                                    
-                                   
+                                    <td>{listHasil.waktu_vote}</td>
+
+
                                 </tr>
-                               
+
                             </tbody>
                         </>
                     ))
