@@ -62,7 +62,7 @@ const Calon = () => {
         console.log(inputMiniclass)
     }
     const handleInputLink = (event) => {
-        setFoto(event.target.value);
+        setLink(event.target.value);
         console.log(inputLink)
     }
 
@@ -155,16 +155,15 @@ const Calon = () => {
                     </tr>
                 </thead>
                 {
-                    calon.map((listCalon) => (
-                        <>
-                            <tbody style={{ height: '85px' }}>
-                                <tr>
-                                    <td>{listCalon.nama}</td>
-                                    <td>{listCalon.kelas}</td>
-                                    <td><img src={listCalon.foto} alt="" height="75px" /></td>
-                                    <td><CompIcons name="test" /></td>
-                                </tr>
-                                {/* <tr>
+                    calon.map((listCalon, i) => (
+                        <tbody style={{ height: '85px' }} key={i}>
+                            <tr>
+                                <td>{listCalon.nama}</td>
+                                <td>{listCalon.kelas}</td>
+                                <td><img src={listCalon.foto} alt="" height="75px" /></td>
+                                <td><CompIcons name="test" /></td>
+                            </tr>
+                            {/* <tr>
                                     <td>2</td>
                                     <td>Jacob</td>
                                     <td>Thornton</td>
@@ -172,8 +171,7 @@ const Calon = () => {
                                         <CompIcons />
                                     </td>
                                 </tr> */}
-                            </tbody>
-                        </>
+                        </tbody>
                     ))
                 }
             </Table>
