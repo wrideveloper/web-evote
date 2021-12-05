@@ -1,17 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react'
 import {
+    Container,
     Button,
     Modal,
     ModalBody,
     ModalFooter,
+    Row,
+    Col
 } from "reactstrap";
 import { useParams } from 'react-router-dom'
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import ReactPlayer from 'react-player/lazy';
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MyContext } from '../../../contexts/Api-Context';
-import { dateNumber } from '../../../helper/date';
+import { MyContext } from '../../../../contexts/Api-Context';
+import { dateNumber } from '../../../../helper/date';
+import { convertToCapitalFirstLetter, splitMisi } from '../../../../helper/string';
+import './profileCaketum.css'
 
 const ProfilCaketum = () => {
     let { id } = useParams();
@@ -48,7 +54,7 @@ const ProfilCaketum = () => {
             try {
                 const response = await axios.get(`https://evote.ceban-app.com/calon/${id}`);
                 setCalon(response.data);
-                console.log("halo ini data calon", response);
+                // console.log("halo ini data calon", response);
             } catch (error) {
                 console.error(error);
             }
@@ -68,7 +74,7 @@ const ProfilCaketum = () => {
 
 
     return (
-        <div>
+        <Container style={{ minHeight: '90vh' }}>
             {
                 calon.map((data) => (
                     <>
@@ -78,52 +84,64 @@ const ProfilCaketum = () => {
                                 Profil Caketum
                             </h4>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'center', marginLeft: 'auto', marginRight: 'auto', width: '97%' }}>
-                            <div style={{ border: '2px solid #C4C4C4', borderRadius: '10px', margin: '30px', minHeight: '565px' }}>
-                                <img src={data.foto} alt=""
-                                    style={{ width: '331px', height: '250px', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }} />
-                                <div style={{ padding: '10px', width: '60%', marginLeft: 'auto', marginRight: 'auto', fontFamily: 'sans-serif' }}>
-                                    <div style={{ marginBottom: '20px', marginTop: '45px' }}>
-                                        <h3 style={{ fontSize: '24px', marginBottom: '8px', color: '#3F3D56', fontWeight: '700' }}>{data.nama}</h3>
-                                        <p style={{ margin: '0', fontSize: '16px', color: '#7B7899' }}>Calon {data.id_calon}</p>
+                        <Row>
+                            <Col xs="12" md="6" lg="4" className="mb-3">
+                                <div style={{ border: '2px solid #C4C4C4', borderRadius: '10px', minHeight: '565px' }}>
+                                    <img src={data.foto} alt="" className="w-100"
+                                        style={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }} />
+                                    <div className="m-5" style={{ fontFamily: 'sans-serif' }}>
+                                        <div>
+                                            <h3 style={{ fontSize: '24px', marginBottom: '8px', color: '#3F3D56', fontWeight: '700' }}>{convertToCapitalFirstLetter(data.nama)}</h3>
+                                            <p style={{ margin: '0', fontSize: '16px', color: '#7B7899' }}>Calon {data.id_calon}</p>
+                                        </div>
+                                        <div className="mt-2">
+                                            <p style={{ marginBottom: '5px' }}>Kelas {data.kelas}</p>
+                                            <p style={{ margin: '0' }}>Miniclass {data.miniclass}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p style={{ marginBottom: '5px' }}>Kelas {data.kelas}</p>
-                                        <p style={{ margin: '0' }}>Miniclass {data.miniclass}</p>
+                                </div>
+                            </Col>
+                            <Col>
+                                <div
+                                    style={{ border: '2px solid #D5D2EE', borderRadius: '10px', minHeight: '565px', padding: '20px', fontFamily: 'sans-serif' }}>
+                                    <div style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '20px', marginBottom: '48px' }}>
+                                        <div
+                                            style={{ display: 'inline-block', border: '2px solid black', verticalAlign: 'middle', width: '20px', height: '20px', borderRadius: '50%', marginRight: '10px', backgroundColor: '#5CE1FF', fontSize: '16px' }}>
+                                        </div>
+                                        Tentang Saya
+                                    </div>
+                                    <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '50px', marginTop: '50px' }}>
+                                        <h4 style={{ color: '#7B7899', fontSize: '16px', marginBottom: '14px' }}>Visi</h4>
+                                        <p style={{ lineHeight: '24px', fontSize: '16px' }}>{data.visi}</p>
+                                    </div>
+                                    <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto' }}>
+                                        <h4 style={{ color: '#7B7899', fontSize: '16px', marginBottom: '14px' }}>Misi</h4>
+                                        <ol style={{ lineHeight: '24px', fontSize: '16px' }}>
+                                            {splitMisi(data.misi).map(item => (
+                                                <li>{item}</li>
+                                            ))}
+                                        </ol>
                                     </div>
                                 </div>
-                            </div>
-                            <div
-                                style={{ border: '2px solid #D5D2EE', borderRadius: '10px', margin: '30px', maxHeight: '565px', padding: '20px', fontFamily: 'sans-serif', minWidth: '938px' }}>
-                                <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto', marginTop: '20px', marginBottom: '48px' }}>
-                                    <div
-                                        style={{ display: 'inline-block', border: '2px solid black', verticalAlign: 'middle', width: '20px', height: '20px', borderRadius: '50%', marginRight: '10px', backgroundColor: '#5CE1FF', fontSize: '16px' }}>
-                                    </div>
-                                    Tentang Saya
-                                </div>
-                                <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '50px', marginTop: '50px' }}>
-                                    <h4 style={{ color: '#7B7899', fontSize: '16px', marginBottom: '14px' }}>Visi</h4>
-                                    <p style={{ lineHeight: '24px', fontSize: '16px' }}>{data.visi}</p>
-                                </div>
-                                <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto' }}>
-                                    <h4 style={{ color: '#7B7899', fontSize: '16px', marginBottom: '14px' }}>Misi</h4>
-                                    <ol style={{ lineHeight: '24px', fontSize: '16px' }}>
-                                        <li>{data.misi}</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
+                            </Col>
+                        </Row>
+
                         {/* profile caketum end*/}
 
                         {/* Video Orasi */}
-                        <div style={{ border: '2px solid #D5D2EE', borderRadius: '10px', padding: '40px 55px', margin: '25px 10px 50px 10px', fontFamily: 'sans-serif' }}>
+                        <div className="mt-3 mb-5" style={{ border: '2px solid #D5D2EE', borderRadius: '10px', padding: '40px 55px', fontFamily: 'sans-serif' }}>
                             <div
                                 style={{ display: 'inline-block', verticalAlign: 'middle', border: '2px solid black', width: '20px', height: '20px', borderRadius: '50%', marginLeft: '20px', marginRight: '10px', backgroundColor: '#5CE1FF' }}>
                             </div>
                             Video Orasi
                             {/* <h1>Tempat Halaman home page</h1> */}
-                            <div style={{ display: 'flex', justifyContent: 'center', marginLeft: '20px', marginRight: '20px', marginTop: '30px', marginBottom: '10%' }}>
-                                <iframe width="1280" height="662" src={data.link} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen='allowfullscreen'></iframe>
+                            <div className="iframeContainer w-100 mt-3">
+                                {
+                                    data.link === null ?
+                                        <h5>Vidio Masih Kosong</h5> :
+                                        <ReactPlayer url={data.link} className="w-100" height="500px"
+                                            playIcon="true" />
+                                }
                             </div>
                         </div>
                         {/* Video Orasi End */}
@@ -132,39 +150,33 @@ const ProfilCaketum = () => {
             }
 
             {/* button */}
-            <div style={{ display: 'flex', justifyContent: 'end', marginBottom: '122px' }}>
-                <Link to="/">
-                    <Button style={{ padding: '20px 80px', borderRadius: '50px', marginRight: '57px', border: '2px solid #E9E8F6', backgroundColor: 'white', color: 'black', fontSize: '14px', fontWeight: 'bold' }}>Kembali</Button>
-                </Link>
-                {
-                    filterVoteSameNimUser.length > 0 ?
-                        <Button
-                            className="mb-1"
-                            style={{
-                                fontSize: "12px",
-                                fontWeight: "bold",
-                                padding: "15px 60px",
-                                borderRadius: "25px",
-                            }}
-                            disabled
-                        >Berhasil Voting</Button>
-                        :
-                        <Button
-                            className="mb-1"
-                            color="warning"
-                            style={{
-                                fontSize: "12px",
-                                fontWeight: "bold",
-                                padding: "15px 60px",
-                                borderRadius: "25px",
-                            }}
-                            onClick={() => {
-                                handleModal();
-                            }}
-                        >
-                            Vote
-                        </Button>
-                }
+            <div className="d-flex justify-content-end">
+                <>
+                    <Link to="/">
+                        <Button color="#fff" className="mb-5"
+                            style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px", marginRight: '10px' }}
+                        >Kembali</Button>
+                    </Link>
+                    {
+                        filterVoteSameNimUser.length > 0 ?
+                            <Button
+                                className="mb-5"
+                                style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
+                                disabled
+                            >Berhasil Voting</Button>
+                            :
+                            <Button
+                                className="mb-5"
+                                style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
+                                color="warning"
+                                onClick={() => {
+                                    handleModal();
+                                }}
+                            >
+                                Vote
+                            </Button>
+                    }
+                </>
                 <Modal isOpen={modal} size="lg">
                     <center>
                         <ModalBody style={{ color: "#2e2c49" }}>
@@ -215,7 +227,7 @@ const ProfilCaketum = () => {
                 </Modal>
             </div>
             {/* button end */}
-        </div>
+        </Container>
 
     )
 }

@@ -21,7 +21,7 @@ const Calon = () => {
 
     async function postCalon() {
         try {
-            const response = await axios.post('https://evote.ceban-app.com/calon', {
+            await axios.post('https://evote.ceban-app.com/calon', {
                 nama: inputNamaCalon,
                 kelas: inputNamaKelas,
                 visi: inputVisi,
@@ -31,7 +31,7 @@ const Calon = () => {
                 miniclass: inputMiniclass
             });
             alert('Data Berhasil Ditambahkan');
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -39,31 +39,31 @@ const Calon = () => {
 
     const handleInputNamaCalon = (event) => {
         setNamaCalon(event.target.value);
-        console.log(inputNamaCalon)
+        // console.log(inputNamaCalon)
     }
     const handleInputNamaKelas = (event) => {
         setNamaKelas(event.target.value);
-        console.log(inputNamaKelas)
+        // console.log(inputNamaKelas)
     }
     const handleInputVisi = (event) => {
         setVisi(event.target.value);
-        console.log(inputVisi)
+        // console.log(inputVisi)
     }
     const handleInputMisi = (event) => {
         setMisi(event.target.value);
-        console.log(inputMisi)
+        // console.log(inputMisi)
     }
     const handleInputFoto = (event) => {
         setFoto(event.target.value);
-        console.log(inputFoto)
+        // console.log(inputFoto)
     }
     const handleInputMiniclass = (event) => {
         setMiniclass(event.target.value);
-        console.log(inputMiniclass)
+        // console.log(inputMiniclass)
     }
     const handleInputLink = (event) => {
         setLink(event.target.value);
-        console.log(inputLink)
+        // console.log(inputLink)
     }
 
     React.useEffect(() => {

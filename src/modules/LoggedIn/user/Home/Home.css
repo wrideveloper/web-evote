@@ -30,6 +30,14 @@
     border-radius: 10px;
 }
 
+.descriptionVisi {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
 @media (max-width: 640px) { 
     .title {
         font-size: 20px;

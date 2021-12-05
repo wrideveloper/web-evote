@@ -21,18 +21,18 @@ const ApiContext = (props) => {
 
     const getAllUsers = async () => {
         const user = await APISOURCE.getListUsers();
-        console.log('line 13 Api Context ~ user ', user)
+        // console.log('line 13 Api Context ~ user ', user)
         setUsers(user);
     };
     const getUserById = async (id) => {
         const user = await APISOURCE.getUserById(id);
-        console.log('line 18 Api Context ~ userId ', user)
+        // console.log('line 18 Api Context ~ userId ', user)
         setUserId(user);
     };
 
     const getAllCalon = async () => {
         const calon = await APISOURCE.getCalon();
-        console.log('line 25 Api Context ~ calon ', calon)
+        // console.log('line 25 Api Context ~ calon ', calon)
         setCalon(calon);
     }
 

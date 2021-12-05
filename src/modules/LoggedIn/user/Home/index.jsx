@@ -147,6 +147,9 @@ const Home = () => {
                     style={{
                       borderRadius: "10px 10px 0px 0px",
                       marginBottom: "-27px",
+                      minHeight: "250px",
+                      maxHeight: "250px",
+                      objectFit: "cover"
                     }}
                   />
                   <span
@@ -166,9 +169,9 @@ const Home = () => {
                       {menampilkanData.nama}
                     </CardTitle>
                     <CardSubtitle className="mb-3 text-muted" tag="h6">
-                      {menampilkanData.miniclass}
+                      Miniclass {menampilkanData.miniclass}
                     </CardSubtitle>
-                    <CardText>"{menampilkanData.visi}"</CardText>
+                    <CardText className="descriptionVisi">"{menampilkanData.visi}"</CardText>
 
                     <div>
                       {

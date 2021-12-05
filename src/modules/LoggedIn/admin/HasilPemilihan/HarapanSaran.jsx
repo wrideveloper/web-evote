@@ -12,7 +12,7 @@ const HarapanSaran = () => {
         try {
             const response = await axios.get('https://evote.ceban-app.com/vote');
             setHarapan(response.data)
-            console.log("Halo ini Data Calon", response.data);
+            // console.log("Halo ini Data Calon", response.data);
         } catch (error) {
             console.error(error);
         }

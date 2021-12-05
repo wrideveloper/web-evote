@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import { Container, Card, CardBody, CardTitle, CardSubtitle, CardFooter, Button, Label, Progress } from 'reactstrap'
 import CardLayout from '../../../components/Card/CardLayout'
 import ProgressBar from '../../../components/Progress/ProgressBar'
 import axios from 'axios'
@@ -22,7 +21,7 @@ const Statistik = () => {
         const getAllScore = async () => {
             try {
                 const request = await axios.get('https://evote.ceban-app.com/vote/get/score');
-                console.log(request.data)
+                // console.log(request.data)
                 setAllScore(request.data)
             } catch (error) {
                 console.log(error)
@@ -45,8 +44,10 @@ const Statistik = () => {
         >
             {
                 allScore !== [] &&
-                allScore.map(item => (
-                    <ProgressBar max={50} value={item.total_vote} index={item.id_calon} />
+                allScore.map((item, index) => (
+                    <div key={index}>
+                        <ProgressBar max={50} value={item.total_vote} index={item.id_calon} />
+                    </div>
                 ))
 
             }
@@ -55,8 +56,8 @@ const Statistik = () => {
             <div className="d-md-flex flex-wrap">
                 {
                     allScore !== [] &&
-                    allScore.map(item => (
-                        <p style={{ marginRight: 20 }}>C{item.id_calon}: {item.nama}</p>
+                    allScore.map((item, index) => (
+                        <p style={{ marginRight: 20 }} key={index}>C{item.id_calon}: {item.nama}</p>
                     ))
                 }
             </div>

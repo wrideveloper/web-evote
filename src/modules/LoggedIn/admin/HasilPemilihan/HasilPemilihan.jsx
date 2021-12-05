@@ -16,7 +16,7 @@ const HasilPemilihan = () => {
         try {
             const response = await axios.get('https://evote.ceban-app.com/vote/2/sumvote');
             setVoteCalon1(response.data)
-            console.log("Calon 1", response.data);
+            // console.log("Calon 1", response.data);
         } catch (error) {
             console.log(error)
         }
@@ -26,7 +26,7 @@ const HasilPemilihan = () => {
         try {
             const response = await axios.get('https://evote.ceban-app.com/vote/3/sumvote');
             setVoteCalon2(response.data)
-            console.log("Calon 2", response.data);
+            // console.log("Calon 2", response.data);
         } catch (error) {
             console.log(error)
         }
@@ -36,7 +36,7 @@ const HasilPemilihan = () => {
         try {
             const response = await axios.get('https://evote.ceban-app.com/vote/4/sumvote');
             setVoteCalon3(response.data)
-            console.log("Calon 3", response.data);
+            // console.log("Calon 3", response.data);
         } catch (error) {
             console.log(error)
         }
@@ -46,7 +46,7 @@ const HasilPemilihan = () => {
         try {
             const response = await axios.get('https://evote.ceban-app.com/vote/get/totalvote');
             setTotalSemuaVote(response.data)
-            console.log("Semua Vote", response.data);
+            // console.log("Semua Vote", response.data);
         } catch (error) {
             console.log(error)
         }

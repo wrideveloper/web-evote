@@ -28,7 +28,7 @@ const LoginPage = () => {
             return alert("Nim Anda Belum Terdaftar, Silahkan chat Admin Yukafi: 085607287537")
         } else {
             if (findUser.nim === nim && findUser.password === md5(password).toString()) {
-                console.log('Line 24 ~ role ', findUser.role)
+                // console.log('Line 24 ~ role ', findUser.role)
                 if (findUser.role === "Pemilih") {
                     alert('Selamat Anda Berhasil Login')
                     window.location.reload()
@@ -40,15 +40,13 @@ const LoginPage = () => {
                     history.push('/')
                 }
                 setUser(findUser)
+                console.log(user)
                 localStorage.setItem('user', JSON.stringify(findUser))
             } else {
                 alert('NIM/Password Anda sepertinya salah, harap periksa kembali!')
             }
         }
     }
-
-    console.log(user)
-
     return (
         <div className="containerLogin"
             style={{
@@ -85,7 +83,7 @@ const LoginPage = () => {
                         <span className="input-group-text" id="basic-addon1">
                             <FontAwesomeIcon icon={faLock} />
                         </span>
-                        <input vaue={password} onChange={(event) => setPassword(event.target.value)} type="password" className="form-control" placeholder="Password Anda" name="password" id="password" aria-label="nim" aria-describedby="password" />
+                        <input type="password" className="form-control" placeholder="Password Anda" id="password" vaue={password} onChange={(event) => setPassword(event.target.value)} />
                     </div>
                     <center>
                         <Button onClick={handleSubmit} className="text-white center" color="warning" style={{ borderRadius: '50px', width: '180px', height: '50px' }}>Selanjutnya</Button>

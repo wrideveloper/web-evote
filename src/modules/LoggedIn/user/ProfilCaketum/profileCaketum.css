@@ -1,0 +1,8 @@
+.iframeContainer {
+    display: flex;
+    justifyContent: center;
+    marginLeft: 20px;
+    marginRight: 20px;
+    marginTop: 30px;
+    marginBottom: 10%;
+}

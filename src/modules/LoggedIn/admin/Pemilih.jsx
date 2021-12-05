@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { 
-  Table, 
-  Button, 
-  Modal, 
-  ModalHeader, 
-  ModalBody, 
-  ModalFooter, 
-  FormGroup, 
-  Form, 
-  Input, 
-  Label 
+import {
+  Table,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  FormGroup,
+  Form,
+  Input,
+  Label
 } from "reactstrap";
 import CompIcons from '../../../components/CompIcons';
 import axios from 'axios';
@@ -25,12 +25,11 @@ const Pemilih = () => {
   const [inputNamaPemilih, setNamaPemilih] = useState("")
   const [inputMiniclass, setMiniclass] = useState("")
   const [inputNim, setNim] = useState("")
-  const [inputUsername, setUsername] = useState("")
   const [inputPassword, setPassword] = useState("")
 
   async function postPemilih() {
     try {
-      const response = await axios.post('https://evote.ceban-app.com/user', {
+      await axios.post('https://evote.ceban-app.com/user', {
         nama: inputNamaPemilih,
         miniclass: inputMiniclass,
         nim: inputNim,
@@ -38,7 +37,7 @@ const Pemilih = () => {
         role: role
       });
       alert('Data Berhasil Ditambahkan');
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -59,32 +58,27 @@ const Pemilih = () => {
 
   const handleInputNamaPemilih = (event) => {
     setNamaPemilih(event.target.value);
-    console.log(inputNamaPemilih)
+    // console.log(inputNamaPemilih)
   }
 
   const handleInputMiniclass = (event) => {
     setMiniclass(event.target.value);
-    console.log(inputMiniclass)
+    // console.log(inputMiniclass)
   }
 
   const handleInputNim = (event) => {
     setNim(event.target.value);
-    console.log(inputNim)
-  }
-
-  const handleUsername = (event) => {
-    setUsername(event.target.value);
-    console.log(inputUsername)
+    // console.log(inputNim)
   }
 
   const handleInputPassword = (event) => {
     setPassword(event.target.value);
-    console.log(inputPassword)
+    // console.log(inputPassword)
   }
 
   const handleInputRole = (event) => {
     setRole(event.target.value);
-    console.log(role)
+    // console.log(role)
   }
 
   return (
@@ -109,10 +103,6 @@ const Pemilih = () => {
           </FormGroup>
           <Form>
             <FormGroup>
-              <Label for="Username"><b>Username</b></Label>
-              <Input onChange={(event) => handleUsername(event)} type="text" name="username" id="username" /><br />
-            </FormGroup>
-            <FormGroup>
               <Label for="Password"><b>Password</b></Label>
               <Input onChange={(event) => handleInputPassword(event)} type="password" name="password" id="password" /><br />
             </FormGroup>
@@ -128,7 +118,7 @@ const Pemilih = () => {
         </ModalBody>
         <ModalFooter>
           <Button style={{ backgroundColor: '#f7b217' }} onClick={handleModal}>Batal</Button>
-          <Button style={{ backgroundColor: '#547a95' }} onClick={() => {handleModal(); postPemilih();}}>Tambah</Button>
+          <Button style={{ backgroundColor: '#547a95' }} onClick={() => { handleModal(); postPemilih(); }}>Tambah</Button>
         </ModalFooter>
       </Modal>
       <Table striped bordered hover>
@@ -141,7 +131,7 @@ const Pemilih = () => {
           </tr>
         </thead>
         {
-          pemilih.map((listPemilih,i) => (
+          pemilih.map((listPemilih, i) => (
             <tbody key={i}>
               <tr>
                 <td>{listPemilih.nim}</td>

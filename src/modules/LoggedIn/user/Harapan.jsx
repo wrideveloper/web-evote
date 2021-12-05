@@ -76,7 +76,7 @@ export default function Harapan() {
 
     const handleInputHarapan = (event) => {
         setInputHarapan(event.target.value);
-        console.log(inputHarapan)
+        // console.log(inputHarapan)
     }
 
     useEffect(() => {
