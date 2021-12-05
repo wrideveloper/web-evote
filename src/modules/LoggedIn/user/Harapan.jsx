@@ -1,13 +1,37 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Button, Row, Col, Container, Card, CardBody, CardTitle, CardSubtitle, FormGroup, Label, Input, Table, CardFooter } from 'reactstrap';
+import {
+    Button,
+    Row,
+    Col,
+    Container,
+    Card,
+    CardBody,
+    CardTitle,
+    CardSubtitle,
+    FormGroup,
+    Label,
+    Input,
+    Table,
+    CardFooter,
+} from 'reactstrap';
 import axios from 'axios';
 import { dateNumber } from '../../../helper/date';
 import '../../../components/responsiveHarapan.css';
 import { MyContext } from '../../../contexts/Api-Context'
 import { convertToCapitalFirstLetter } from '../../../helper/string';
+import Pagination from '../../../components/Pagination';
+
 export default function Harapan() {
     const { vote, getAllVote, setVote } = useContext(MyContext)
     const [user, setUser] = useState([])
+
+    const [pageSize] = useState(5);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const handlePagination = (e, index) => {
+        e.preventDefault()
+        setCurrentPage(index)
+    }
     // console.log(dateNumber)
     // const [inputStr, setInputstr] = useState('');
     // const [showPicker, setShowPicker] = useState(false);
@@ -55,8 +79,6 @@ export default function Harapan() {
         console.log(inputHarapan)
     }
 
-    //console.log(getCalon);
-
     useEffect(() => {
         getAllVote()
         const loggedInUser = localStorage.getItem("user");
@@ -67,6 +89,9 @@ export default function Harapan() {
     }, [getAllVote, vote])
 
     const FilterHarapan = vote.length > 0 && vote.filter(item => item.harapan !== "")
+        .sort((a, b) => b.id_vote - a.id_vote)
+
+    let pagesCount = Math.ceil((FilterHarapan.length > 0) && FilterHarapan.length / pageSize);
 
     return (
         <div>
@@ -146,7 +171,10 @@ export default function Harapan() {
                             <tr />
                             <tbody>
                                 {
-                                    FilterHarapan && FilterHarapan.map((listHarapan) => (
+                                    FilterHarapan && FilterHarapan.slice(
+                                        currentPage * pageSize,
+                                        (currentPage + 1) * pageSize
+                                    ).map((listHarapan) => (
                                         <tr key={listHarapan.id_vote}>
                                             <td className="nama w-25" style={{ paddingTop: '5%', paddingBottom: '5%', fontWeight: 'bold' }}>
                                                 {listHarapan.nama_pemilih}
@@ -158,6 +186,11 @@ export default function Harapan() {
                                 }
                             </tbody>
                         </Table>
+                        <Pagination
+                            currentPage={currentPage}
+                            pagesCount={pagesCount}
+                            handlePagination={handlePagination}
+                        />
                     </CardBody>
                 </Card>
 
