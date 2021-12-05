@@ -5,6 +5,8 @@ import {
 } from 'reactstrap';
 
 const CardHarapan = (props) => {
+
+
     return (
         <>
             <Card className="mb-3" style={{ backgroundColor: '#f2f2f2', border: 'none', borderRadius: '8px' }}>
@@ -16,13 +18,7 @@ const CardHarapan = (props) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col style={{ paddingBottom: '40px' }}>
-                                <CardSubtitle tag="h6" style={{ fontWeight: 'bold' }}>Harapan</CardSubtitle>
-                                <CardText style={{ lineHeight: '1.8' }}>{props.harapan}</CardText>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col style={{ paddingBottom: '20px' }}>
+                            <Col>
                                 <CardSubtitle tag="h6" style={{ fontWeight: 'bold' }}>Saran</CardSubtitle>
                                 <CardText style={{ lineHeight: '1.8' }}>{props.saran}</CardText>
                             </Col>

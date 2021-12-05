@@ -130,9 +130,6 @@ li a.dropdown-toggle::after {
 }
 
 @media only screen and (max-width: 500px) {
-  body {
-    overflow: hidden;
-  }
 
   .content.is-open {
     margin-left: 100%;

@@ -4,9 +4,6 @@ import {
     CardTitle, CardSubtitle, Row, Col,
 } from 'reactstrap';
 
-
-
-
 const CardDetailCalon = (props) => {
     return (
         <>

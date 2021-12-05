@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react'
 import React from 'react'
 
 const Done = () => {
@@ -11,6 +10,7 @@ const Done = () => {
                 width: '94%', 
                 height: '100vh',
                 margin: '3%'
+
             }}>
                 <div style={{
                     textAlign: "center",

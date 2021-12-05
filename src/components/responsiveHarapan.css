@@ -1,0 +1,23 @@
+.inputArea {
+    color: aqua;
+}
+
+input ::placeholder {
+    color: aqua;
+}
+
+@media only screen and (max-width: 600px) {
+    .log {
+        display: none;
+    }
+
+    .inputt {
+        display: none;
+    }
+
+    .nama {
+        padding-top: 5%;
+        padding-bottom: 5%;
+
+    }
+}
