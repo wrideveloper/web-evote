@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import CardLayout from '../../../components/Card/CardLayout'
 import ProgressBar from '../../../components/Progress/ProgressBar'
 import axios from 'axios'
+import { MyContext } from '../../../contexts/Api-Context'
 
 const Statistik = () => {
     const [totalVote, setTotalVote] = useState(0);
     const [allScore, setAllScore] = useState([]);
+    const { getAllUsers, users } = useContext(MyContext)
 
     useEffect(() => {
         const getTotalVote = async () => {
@@ -30,7 +32,8 @@ const Statistik = () => {
 
         getTotalVote()
         getAllScore()
-    }, [])
+        getAllUsers()
+    }, [getAllUsers])
 
     const Footer = (
         <h6>Total Vote: {totalVote.length === 1 && totalVote[0].total_vote}</h6>
@@ -46,7 +49,7 @@ const Statistik = () => {
                 allScore !== [] &&
                 allScore.map((item, index) => (
                     <div key={index}>
-                        <ProgressBar max={50} value={item.total_vote} index={item.id_calon} />
+                        <ProgressBar max={users.length} value={item.total_vote} index={item.id_calon} />
                     </div>
                 ))
 

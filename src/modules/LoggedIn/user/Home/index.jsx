@@ -25,9 +25,11 @@ import { MyContext } from "../../../../contexts/Api-Context";
 
 const Home = () => {
   const [user, setUser] = useState([]);
+  const { id_user } = user
   const [calon, setCalon] = useState("");
   // const [vote, setVote] = useState([]);
   const [dataCalon, setDataCalon] = useState([]);
+  const [voteId, setVoteId] = useState([]);
   const history = useHistory()
   const { vote, getAllVote, } = useContext(MyContext);
   const getData = async () => {
@@ -38,25 +40,43 @@ const Home = () => {
       console.error(error);
     }
   };
+
+  // console.log(id_user)
   useEffect(() => {
-    getData();
+
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
     }
+    const getVoteById = async () => {
+      try {
+        const response = await axios.get(`https://evote.ceban-app.com/vote/${id_user}`);
+        setVoteId(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     getAllVote()
-  }, [dataCalon, getAllVote]);
-
+    getData();
+    getVoteById();
+  }, [getAllVote, id_user]);
+  // console.log("haloo calon", calon)
+  // console.log(voteId.length)
   const postVote = async () => {
     try {
-      await axios.post("https://evote.ceban-app.com/vote", {
-        id_calon: calon,
-        id_user: user.id_user,
-        harapan: "",
-        waktu_vote: dateNumber,
-      });
-      history.push('/done')
+      if (voteId.length === 0) {
+        await axios.post("https://evote.ceban-app.com/vote", {
+          id_calon: calon,
+          id_user: user.id_user,
+          harapan: "",
+          waktu_vote: dateNumber,
+        });
+        history.push('/done')
+      } else {
+        alert('Mohon maaf sepertinya anda sudah melakukan vote.')
+      }
+
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +89,7 @@ const Home = () => {
   if (!vote) return ""
 
   const filterVoteSameNimUser = vote.length !== 0 && vote.filter(item => item.nim_pemilih === user.nim)
-
+  // console.log(user)
   return (
     <>
       <div

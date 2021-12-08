@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Button,
     Row,
@@ -15,15 +15,16 @@ import {
     CardFooter,
 } from 'reactstrap';
 import axios from 'axios';
-import { dateNumber } from '../../../helper/date';
 import '../../../components/responsiveHarapan.css';
-import { MyContext } from '../../../contexts/Api-Context'
+// import { MyContext } from '../../../contexts/Api-Context'
 import { convertToCapitalFirstLetter } from '../../../helper/string';
 import Pagination from '../../../components/Pagination';
 
 export default function Harapan() {
-    const { vote, getAllVote, setVote } = useContext(MyContext)
-    const [user, setUser] = useState([])
+    // const { vote, getAllVote, setVote } = useContext(MyContext)
+    const [harapan, setHarapan] = useState([]);
+    const [postLength, setPostLength] = useState(0);
+    const [user, setUser] = useState([]);
 
     const [pageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
@@ -56,22 +57,30 @@ export default function Harapan() {
 
     const [inputHarapan, setInputHarapan] = useState("")
 
-    const newVote = {
+    const newHarapan = {
         id_user: user.id_user,
-        id_calon: 4,
-        harapan: inputHarapan,
-        waktu_vote: dateNumber
+        deskripsi: inputHarapan,
     }
+
     async function postHarapan() {
-        await axios.post('https://evote.ceban-app.com/vote', newVote)
+        await axios.post('https://evote.ceban-app.com/harapan', newHarapan)
             .then(() => {
                 alert('Terima kasih, Anda Telah Mengisi Form Harapan')
-                setVote([...vote, newVote])
+                setPostLength(postLength + 1)
             }).catch(err => {
                 alert(err)
                 console.error(err)
             })
         setInputHarapan("")
+    }
+
+    async function getAllHarapan() {
+        try {
+            const response = await axios.get('https://evote.ceban-app.com/harapan')
+            setHarapan(response.data);
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     const handleInputHarapan = (event) => {
@@ -80,16 +89,16 @@ export default function Harapan() {
     }
 
     useEffect(() => {
-        getAllVote()
+        getAllHarapan()
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
             setUser(foundUser);
         }
-    }, [getAllVote, vote])
+    }, [postLength])
 
-    const FilterHarapan = vote.length > 0 && vote.filter(item => item.harapan !== "")
-        .sort((a, b) => b.id_vote - a.id_vote)
+    const FilterHarapan = harapan.length > 0 && harapan.filter(item => item.harapan !== "")
+        .sort((a, b) => b.id_harapan - a.id_harapan)
 
     let pagesCount = Math.ceil((FilterHarapan.length > 0) && FilterHarapan.length / pageSize);
 
@@ -177,10 +186,10 @@ export default function Harapan() {
                                     ).map((listHarapan) => (
                                         <tr key={listHarapan.id_vote}>
                                             <td className="nama w-25" style={{ paddingTop: '5%', paddingBottom: '5%', fontWeight: 'bold' }}>
-                                                {listHarapan.nama_pemilih}
+                                                {convertToCapitalFirstLetter(listHarapan.nama)}
                                             </td>
                                             <td className="nama" style={{ paddingTop: '5%', paddingBottom: '5%' }}>
-                                                {listHarapan.harapan}</td>
+                                                {listHarapan.deskripsi}</td>
                                         </tr>
                                     ))
                                 }

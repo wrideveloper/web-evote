@@ -26,18 +26,24 @@ const ProfilCaketum = () => {
     const [calon, setCalon] = useState([]);
     const [user, setUser] = useState([]);
     const [modal, setModal] = useState(false);
+    const [voteId, setVoteId] = useState([]);
 
     const handleModal = () => setModal(prev => !prev);
 
     const postVote = async () => {
         try {
-            await axios.post("https://evote.ceban-app.com/vote", {
-                id_calon: id,
-                id_user: user.id_user,
-                harapan: "",
-                waktu_vote: dateNumber,
-            });
-            history.push('/done')
+            if (voteId.length === 0) {
+                await axios.post("https://evote.ceban-app.com/vote", {
+                    id_calon: id,
+                    id_user: user.id_user,
+                    harapan: "",
+                    waktu_vote: dateNumber,
+                });
+                history.push('/done')
+            } else {
+                alert('Mohon maaf sepertinya anda sudah melakukan vote.')
+            }
+
         } catch (error) {
             console.error(error);
         }
@@ -64,8 +70,17 @@ const ProfilCaketum = () => {
             const foundUser = JSON.parse(loggedInUser);
             setUser(foundUser);
         }
+        const getVoteById = async () => {
+            try {
+                const response = await axios.get(`https://evote.ceban-app.com/vote/${id}`);
+                setVoteId(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
         getAllVote()
         getCalon()
+        getVoteById()
     }, [id, getAllVote])
 
     if (!vote) return ""
@@ -117,8 +132,8 @@ const ProfilCaketum = () => {
                                     <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto' }}>
                                         <h4 style={{ color: '#7B7899', fontSize: '16px', marginBottom: '14px' }}>Misi</h4>
                                         <ol style={{ lineHeight: '24px', fontSize: '16px' }}>
-                                            {splitMisi(data.misi).map(item => (
-                                                <li>{item}</li>
+                                            {splitMisi(data.misi).map((item, index) => (
+                                                <li key={index}>{item}</li>
                                             ))}
                                         </ol>
                                     </div>

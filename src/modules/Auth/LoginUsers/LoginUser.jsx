@@ -1,11 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card } from 'reactstrap'
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import md5 from 'crypto-js/md5'
+import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { date } from '../../../helper/date'
-import { MyContext } from '../../../contexts/Api-Context'
+// import { MyContext } from '../../../contexts/Api-Context'
 import "./loginUser.css"
 
 const LoginPage = () => {
@@ -13,16 +14,23 @@ const LoginPage = () => {
     const [user, setUser] = useState('')
     const [nim, setNim] = useState('');
     const [password, setPassword] = useState('');
-    const {
-        getAllUsers, users
-    } = useContext(MyContext);
+    const [users, setUsers] = useState([]);
+    const [isMounted, setIsMounted] = useState(false);
+    // const {
+    //     getAllUsers, users, isMounted
+    // } = useContext(MyContext);
 
     useEffect(() => {
+        const getAllUsers = async () => {
+            const response = await axios.get('https://evote.ceban-app.com/user')
+            setUsers(response.data)
+            setIsMounted(true)
+        }
         getAllUsers()
-    }, [getAllUsers])
+    }, [])
 
     const handleSubmit = () => {
-        const findUser = users.find(item => item.nim === nim && item)
+        const findUser = users && users.find(item => item.nim === nim && item)
         if (!nim || !password) return alert("Harap mengisikan NIM/password terlebih dahulu!")
         if (!findUser) {
             return alert("Nim Anda Belum Terdaftar, Silahkan chat Admin Yukafi: 085607287537")
@@ -77,16 +85,17 @@ const LoginPage = () => {
                         <span className="input-group-text" id="basic-addon1">
                             <FontAwesomeIcon icon={faUser} />
                         </span>
-                        <input value={nim} onChange={(event) => setNim(event.target.value)} type="text" className="form-control" placeholder="Nim Anda" name="nim" id="nim" aria-label="nim" aria-describedby="nim" />
+
+                        <input disabled={!isMounted} value={nim} onChange={(event) => setNim(event.target.value)} type="text" className="form-control" placeholder="Nim Anda" name="nim" id="nim" aria-label="nim" aria-describedby="nim" />
                     </div>
                     <div className="input-group mb-4">
                         <span className="input-group-text" id="basic-addon1">
                             <FontAwesomeIcon icon={faLock} />
                         </span>
-                        <input type="password" className="form-control" placeholder="Password Anda" id="password" vaue={password} onChange={(event) => setPassword(event.target.value)} />
+                        <input disabled={!isMounted} type="password" className="form-control" placeholder="Password Anda" id="password" vaue={password} onChange={(event) => setPassword(event.target.value)} />
                     </div>
                     <center>
-                        <Button onClick={handleSubmit} className="text-white center" color="warning" style={{ borderRadius: '50px', width: '180px', height: '50px' }}>Selanjutnya</Button>
+                        <Button disabled={!isMounted} onClick={handleSubmit} className="text-white center" color="warning" style={{ borderRadius: '50px', width: '180px', height: '50px' }}>Selanjutnya</Button>
                     </center>
                 </Card>
             </div>
