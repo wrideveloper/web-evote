@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Table, Button, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import '../../../../components/Pemilihan.css';
 import axios from 'axios';
+import PieChart from '../../../../components/chart/PieChart'
+import { MyContext } from '../../../../contexts/Api-Context';
+import { convertDate } from '../../../../helper/date'
 
 const HasilPemilihan = () => {
-
+    const { getAllCalon, calon } = useContext(MyContext)
     const [totalCalon1, setVoteCalon1] = useState([])
     const [totalCalon2, setVoteCalon2] = useState([])
     const [totalCalon3, setVoteCalon3] = useState([])
@@ -26,7 +29,7 @@ const HasilPemilihan = () => {
         try {
             const response = await axios.get('https://evote.ceban-app.com/vote/3/sumvote');
             setVoteCalon2(response.data)
-            // console.log("Calon 2", response.data);
+            // console.log("Calon 2", totalCalon2[0].sum_vote);
         } catch (error) {
             console.log(error)
         }
@@ -67,7 +70,20 @@ const HasilPemilihan = () => {
         getCalonId2()
         getCalonId3()
         getAllVote()
-    }, [])
+        getAllCalon()
+    }, [getAllCalon])
+
+    // console.log(totalCalon1 + totalCalon2 + totalCalon3)
+    const sumCalon1 = totalCalon1.length > 0 && totalCalon1[0].sum_vote
+    const sumCalon2 = totalCalon2.length > 0 && totalCalon2[0].sum_vote
+    const sumCalon3 = totalCalon3.length > 0 && totalCalon3[0].sum_vote
+
+
+    const dataSumVote = [sumCalon1, sumCalon2, sumCalon3]
+    const dataLabel = calon.length > 0 && [calon[0].nama, calon[1].nama, calon[2].nama]
+    console.log("Dfg", dataSumVote)
+    console.log("calon", calon)
+    console.log('label ', dataLabel)
 
     return (
         <div>
@@ -95,7 +111,7 @@ const HasilPemilihan = () => {
                                                 Total Suara
                                             </CardSubtitle>
                                             <CardText>
-                                                Calon 1
+                                                {calon.length > 0 && calon[0].nama}
                                             </CardText>
                                         </CardBody>
                                     </Col>
@@ -114,7 +130,7 @@ const HasilPemilihan = () => {
                                                 Total Suara
                                             </CardSubtitle>
                                             <CardText>
-                                                Calon 2
+                                                {calon.length > 0 && calon[1].nama}
                                             </CardText>
                                         </CardBody>
                                     </Col>
@@ -133,22 +149,26 @@ const HasilPemilihan = () => {
                                                 Total Suara
                                             </CardSubtitle>
                                             <CardText>
-                                                Calon 3
+                                                {calon.length > 0 && calon[2].nama}
                                             </CardText>
                                         </CardBody>
                                     </Col>
                                 </Row>
                             </center>
                         </Col>
-                        <Col className="bg-light border" xs="4" tag="h2" style={{ marginTop: "5%" }}>
-                            <center> Diagram Pie </center>
-                            {/*  */}
+                        <Col className="bg-light border" xs="4" style={{ marginTop: "5%" }}>
+                            <center><h3 className='mt-1'>Statistika Vote</h3></center>
+                            <PieChart data={dataSumVote} label={dataLabel} />
                         </Col>
                     </Row>
+
+
                     {
                         totalSemuaVote.map((listTotalSemuaVote) => (
                             <>
-                                <center><h2 style={{ marginTop: "5%", marginBottom: "5%" }}>Total Suara {listTotalSemuaVote.total_vote}</h2></center>
+                                <center>
+                                    <h2 style={{ marginTop: "5%", marginBottom: "5%" }}>Total Suara {listTotalSemuaVote.total_vote}</h2>
+                                </center>
                             </>
                         ))
                     }
@@ -171,9 +191,7 @@ const HasilPemilihan = () => {
                                 <tr>
                                     <td>{listHasil.nama_pemilih}</td>
                                     <td>{listHasil.memilih_calon}</td>
-                                    <td>{listHasil.waktu_vote}</td>
-
-
+                                    <td>{convertDate(listHasil.waktu_vote)}</td>
                                 </tr>
 
                             </tbody>

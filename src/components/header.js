@@ -9,11 +9,14 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   
   const handleLogout = () => {
-    setUser({});
-    localStorage.clear();
-    alert('Anda Berhasil Logout')
-    history.push('/')
-    window.location.reload()
+    const result = window.confirm('Apakah anda yakin ingin keluar?')
+    console.log("hasil confirm", result)
+    if(result === true) {
+      setUser({});
+      localStorage.clear();
+      history.push('/')
+      window.location.reload()
+    }
   };
   console.log(user)
   
@@ -29,10 +32,10 @@ function Header() {
                       <NavLink tag={Linked} to="/" exact activeClassName="nav-links text-active" className="nav-links">Home</NavLink>
                   </NavItem>
                   <NavItem className="persen nav-items">
-                      <NavLink tag={Linked} to="/statistik" activeClassName="nav-links text-active" className="nav-links">Lihat hasil vote</NavLink>
+                      <NavLink tag={Linked} to="/statistik" activeClassName="nav-links text-active" className="nav-links">Hasil Vote</NavLink>
                   </NavItem>
                   <NavItem className="nav-items">
-                      <NavLink onClick={handleLogout} activeClassName="nav-links text-active"  className="nav-links">Log Out</NavLink>
+                      <NavLink style={{ cursor: 'pointer' }} onClick={handleLogout} activeClassName="nav-links text-active"  className="nav-links">Log Out</NavLink>
                   </NavItem>
               </Nav>
           </Collapse>

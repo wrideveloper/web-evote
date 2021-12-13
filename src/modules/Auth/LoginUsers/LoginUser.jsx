@@ -86,7 +86,7 @@ const LoginPage = () => {
                             <FontAwesomeIcon icon={faUser} />
                         </span>
 
-                        <input disabled={!isMounted} value={nim} onChange={(event) => setNim(event.target.value)} type="text" className="form-control" placeholder="Nim Anda" name="nim" id="nim" aria-label="nim" aria-describedby="nim" />
+                        <input disabled={!isMounted} value={nim} onChange={(event) => setNim(event.target.value)} type="text" className="form-control" placeholder="Email Anda" name="email" id="email" aria-label="email" aria-describedby="email" />
                     </div>
                     <div className="input-group mb-4">
                         <span className="input-group-text" id="basic-addon1">
