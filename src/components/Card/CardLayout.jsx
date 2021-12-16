@@ -10,7 +10,7 @@ const CardLayout = ({ titlePage, titleCard, children, footer }) => {
             </center>
             <Card>
                 <CardBody style={{ padding: '60px' }}>
-                    <CardTitle tag="h5">
+                    <CardTitle>
                         <h5><div
                             style={{
                                 display: 'inline-block',

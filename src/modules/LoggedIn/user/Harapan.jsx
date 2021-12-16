@@ -115,7 +115,7 @@ export default function Harapan() {
                     <Col >
                         <Card>
                             <CardBody style={{ padding: '60px' }}>
-                                <CardTitle tag="h5">
+                                <CardTitle>
                                     <h5><img src="/images/Rectangle 103.png" alt="" style={{ marginRight: '15px', width: '19px' }} />Harapan Untuk Caketum</h5><br />
                                 </CardTitle>
                                 <CardSubtitle
@@ -123,7 +123,7 @@ export default function Harapan() {
                                     tag="h6">
                                     Nama
                                 </CardSubtitle>
-                                <CardTitle tag="h5">
+                                <CardTitle>
                                     <h5>{convertToCapitalFirstLetter(user.nama)}</h5><br />
                                 </CardTitle>
                                 <CardSubtitle
@@ -161,7 +161,7 @@ export default function Harapan() {
                                 </div> */}
                             </CardBody>
                             <CardFooter style={{ padding: "45px 68px 45px 45px", textAlign: 'right' }}>
-                                <Button onClick={postHarapan} color="warning" style={{ color: 'white', width: '150px', borderRadius: '100px' }}>
+                                <Button disabled={inputHarapan === ""} onClick={postHarapan} color="warning" style={{ color: 'white', width: '150px', borderRadius: '100px' }}>
                                     Submit
                                 </Button>
                             </CardFooter>

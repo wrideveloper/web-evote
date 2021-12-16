@@ -33,7 +33,7 @@ const LoginPage = () => {
         const findUser = users && users.find(item => item.nim === nim && item)
         if (!nim || !password) return alert("Harap mengisikan NIM/password terlebih dahulu!")
         if (!findUser) {
-            return alert("Nim Anda Belum Terdaftar, Silahkan chat Admin Yukafi: 085607287537")
+            return alert("Username Anda Belum Terdaftar, Silahkan chat Admin Yukafi: 085607287537")
         } else {
             if (findUser.nim === nim && findUser.password === md5(password).toString()) {
                 // console.log('Line 24 ~ role ', findUser.role)
@@ -51,7 +51,7 @@ const LoginPage = () => {
                 console.log(user)
                 localStorage.setItem('user', JSON.stringify(findUser))
             } else {
-                alert('NIM/Password Anda sepertinya salah, harap periksa kembali!')
+                alert('Username/Password Anda sepertinya salah, harap periksa kembali!')
             }
         }
     }
@@ -81,22 +81,24 @@ const LoginPage = () => {
                     <div style={{ textAlign: 'center' }}>
                         <img src="../images/logo-wri.png" alt="logo wri" width="80px" />
                     </div>
-                    <div className="input-group mt-4 mb-4">
-                        <span className="input-group-text" id="basic-addon1">
-                            <FontAwesomeIcon icon={faUser} />
-                        </span>
+                    <form>
+                        <div className="input-group mt-4 mb-4">
+                            <span className="input-group-text" id="basic-addon1">
+                                <FontAwesomeIcon icon={faUser} />
+                            </span>
 
-                        <input disabled={!isMounted} value={nim} onChange={(event) => setNim(event.target.value)} type="text" className="form-control" placeholder="Email Anda" name="email" id="email" aria-label="email" aria-describedby="email" />
-                    </div>
-                    <div className="input-group mb-4">
-                        <span className="input-group-text" id="basic-addon1">
-                            <FontAwesomeIcon icon={faLock} />
-                        </span>
-                        <input disabled={!isMounted} type="password" className="form-control" placeholder="Password Anda" id="password" vaue={password} onChange={(event) => setPassword(event.target.value)} />
-                    </div>
-                    <center>
-                        <Button disabled={!isMounted} onClick={handleSubmit} className="text-white center" color="warning" style={{ borderRadius: '50px', width: '180px', height: '50px' }}>Selanjutnya</Button>
-                    </center>
+                            <input disabled={!isMounted} value={nim} onChange={(event) => setNim(event.target.value)} type="text" className="form-control" placeholder="Username Anda" name="nim" id="nim" aria-label="nim" aria-describedby="nim" />
+                        </div>
+                        <div className="input-group mb-4">
+                            <span className="input-group-text" id="basic-addon1">
+                                <FontAwesomeIcon icon={faLock} />
+                            </span>
+                            <input disabled={!isMounted} type="password" className="form-control" placeholder="Password Anda" id="password" autoComplete="on" vaue={password} onChange={(event) => setPassword(event.target.value)} />
+                        </div>
+                        <center>
+                            <Button disabled={!isMounted} onClick={handleSubmit} className="text-white center" color="warning" style={{ borderRadius: '50px', width: '180px', height: '50px' }}>Selanjutnya</Button>
+                        </center>
+                    </form>
                 </Card>
             </div>
         </div>
