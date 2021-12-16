@@ -178,7 +178,7 @@ const ProfilCaketum = () => {
                                 className="mb-5"
                                 style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
                                 disabled
-                            >Berhasil Voting</Button>
+                            >Sudah Voting</Button>
                             :
                             <Button
                                 className="mb-5"

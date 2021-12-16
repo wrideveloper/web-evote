@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './helper/ScrollToTop.js';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LoginPage from './modules/Auth/LoginUsers/LoginUser';
@@ -21,6 +22,7 @@ import {
   Footer,
   Content
 } from './components'
+import ScrollToTop from './helper/ScrollToTop.js';
 
 function App() {
   const [user, setUser] = useState([]);
@@ -52,11 +54,13 @@ function App() {
               <>
               <Header />
                 <Switch>
-                  <Route exact path="/" component={HomePage} />
-                  <Route path="/harapan" component={HarapanPage} />
-                  <Route path="/statistik" component={StatistikPage} />
-                  <Route path="/profile-caketum/:id" component={ProfilCaketumPage} />
-                  <Route path="/done" component={DonePage} />
+                  <ScrollToTop>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/harapan" component={HarapanPage} />
+                    <Route path="/statistik" component={StatistikPage} />
+                    <Route path="/profile-caketum/:id" component={ProfilCaketumPage} />
+                    <Route path="/done" component={DonePage} />
+                  </ScrollToTop>
                 </Switch>
               <Footer />
               </> 

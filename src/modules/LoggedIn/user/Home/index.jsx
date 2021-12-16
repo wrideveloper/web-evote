@@ -12,7 +12,7 @@ import {
   CardImg,
   Row,
   Col,
-  Container
+  Container,
 } from "reactstrap";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -205,7 +205,7 @@ const Home = () => {
                               borderRadius: "25px",
                             }}
                             disabled
-                          >Berhasil Voting</Button>
+                          >Sudah Voting</Button>
                           :
                           <Button
                             className="mb-1"
