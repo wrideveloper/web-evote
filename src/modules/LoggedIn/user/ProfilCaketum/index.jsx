@@ -178,7 +178,7 @@ const ProfilCaketum = () => {
                                 className="mb-5"
                                 style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
                                 disabled
-                            >Berhasil Voting</Button>
+                            >Sudah Voting</Button>
                             :
                             <Button
                                 className="mb-5"
@@ -205,7 +205,7 @@ const ProfilCaketum = () => {
                             <h4>Apakah Kamu yakin?</h4>
                             <br />
                             <p className="text-muted mb-5">
-                                Kamu hanya bisa memilih satu Caketum. NIM yang sudah digunakan
+                                Kamu hanya bisa memilih satu Caketum. Username yang sudah digunakan
                                 untuk vote tidak bisa digunakan lagi
                             </p>
                         </ModalBody>

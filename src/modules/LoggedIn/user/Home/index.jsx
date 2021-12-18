@@ -205,7 +205,7 @@ const Home = () => {
                               borderRadius: "25px",
                             }}
                             disabled
-                          >Berhasil Voting</Button>
+                          >Sudah Voting</Button>
                           :
                           <Button
                             className="mb-1"
@@ -265,7 +265,7 @@ const Home = () => {
             <h4>Apakah Kamu yakin?</h4>
             <br />
             <p className="text-muted mb-5">
-              Kamu hanya bisa memilih satu Caketum. PIN yang sudah digunakan
+              Kamu hanya bisa memilih satu Caketum. Username yang sudah digunakan
               untuk vote tidak bisa digunakan lagi
             </p>
           </ModalBody>

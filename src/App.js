@@ -19,7 +19,8 @@ import {
   Header, 
   SideBar,
   Footer,
-  Content
+  Content, 
+  ScrollToTop
 } from './components'
 
 function App() {
@@ -50,13 +51,14 @@ function App() {
             {
               user.role === "Pemilih" ?
               <>
+              <ScrollToTop />
               <Header />
                 <Switch>
                   <Route exact path="/" component={HomePage} />
-                  <Route path="/harapan" component={HarapanPage} />
-                  <Route path="/statistik" component={StatistikPage} />
-                  <Route path="/profile-caketum/:id" component={ProfilCaketumPage} />
-                  <Route path="/done" component={DonePage} />
+                    <Route path="/harapan" component={HarapanPage} />
+                    <Route path="/statistik" component={StatistikPage} />
+                    <Route path="/profile-caketum/:id" component={ProfilCaketumPage} />
+                    <Route path="/done" component={DonePage} />
                 </Switch>
               <Footer />
               </> 
