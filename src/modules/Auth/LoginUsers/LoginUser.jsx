@@ -33,7 +33,11 @@ const LoginPage = () => {
         const findUser = users && users.find(item => item.nim === nim && item)
         if (!nim || !password) return alert("Harap mengisikan NIM/password terlebih dahulu!")
         if (!findUser) {
-            return alert("Username Anda Belum Terdaftar, Silahkan chat Admin Yukafi: 085607287537")
+            const admin = `Jika anda lupa akun atau belum terdaftar silahkan hubungi admin:
+1) Faris     : 089653745172
+2) Farlan   : 085855298224
+3) Yukafi   : 085607287537`
+            return alert(admin)
         } else {
             if (findUser.nim === nim && findUser.password === md5(password).toString()) {
                 // console.log('Line 24 ~ role ', findUser.role)
