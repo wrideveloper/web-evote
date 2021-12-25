@@ -168,8 +168,10 @@ const Home = () => {
                       borderRadius: "10px 10px 0px 0px",
                       marginBottom: "-27px",
                       minHeight: "250px",
-                      maxHeight: "250px",
-                      objectFit: "cover"
+                      maxHeight: "280px",
+                      width: "100%",
+                      objectPosition: '50% top',
+                      objectFit: 'cover',
                     }}
                   />
                   <span
@@ -191,7 +193,7 @@ const Home = () => {
                     <CardSubtitle className="mb-3 text-muted" tag="h6">
                       Miniclass {menampilkanData.miniclass}
                     </CardSubtitle>
-                    <CardText className="descriptionVisi">"{menampilkanData.visi}"</CardText>
+                    <CardText className="descriptionVisi">{menampilkanData.visi}</CardText>
 
                     <div>
                       {

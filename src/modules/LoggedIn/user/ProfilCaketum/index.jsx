@@ -27,6 +27,7 @@ const ProfilCaketum = () => {
     const [user, setUser] = useState([]);
     const [modal, setModal] = useState(false);
     const [voteId, setVoteId] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const handleModal = () => setModal(prev => !prev);
 
@@ -58,8 +59,10 @@ const ProfilCaketum = () => {
     useEffect(() => {
         const getCalon = async () => {
             try {
+                setLoading(true)
                 const response = await axios.get(`https://evote.ceban-app.com/calon/${id}`);
                 setCalon(response.data);
+                setLoading(false)
                 // console.log("halo ini data calon", response);
             } catch (error) {
                 console.error(error);
@@ -91,7 +94,7 @@ const ProfilCaketum = () => {
     return (
         <Container style={{ minHeight: '90vh' }}>
             {
-                calon.map((data) => (
+                calon.map((data, index) => (
                     <>
                         <div style={{ display: 'flex', justifyContent: 'center', fontFamily: 'sans-serif' }}>
                             <h4
@@ -100,10 +103,19 @@ const ProfilCaketum = () => {
                             </h4>
                         </div>
                         <Row>
-                            <Col xs="12" md="6" lg="4" className="mb-3">
+                            <Col key={index} xs="12" md="6" lg="4" className="mb-3">
                                 <div style={{ border: '2px solid #C4C4C4', borderRadius: '10px', minHeight: '565px' }}>
                                     <img src={data.foto} alt="" className="w-100"
-                                        style={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }} />
+                                        style={{
+                                            borderTopLeftRadius: '8px',
+                                            borderTopRightRadius: '8px',
+                                            minHeight: "280px",
+                                            maxHeight: "380px",
+                                            width: "100%",
+                                            objectPosition: '100% top',
+                                            objectFit: 'cover',
+                                        }}
+                                    />
                                     <div className="m-5" style={{ fontFamily: 'sans-serif' }}>
                                         <div>
                                             <h3 style={{ fontSize: '24px', marginBottom: '8px', color: '#3F3D56', fontWeight: '700' }}>{convertToCapitalFirstLetter(data.nama)}</h3>
@@ -166,32 +178,36 @@ const ProfilCaketum = () => {
 
             {/* button */}
             <div className="d-flex justify-content-end">
-                <>
-                    <Link to="/">
-                        <Button color="#fff" className="mb-5"
-                            style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px", marginRight: '10px' }}
-                        >Kembali</Button>
-                    </Link>
-                    {
-                        filterVoteSameNimUser.length > 0 ?
-                            <Button
-                                className="mb-5"
-                                style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
-                                disabled
-                            >Sudah Voting</Button>
-                            :
-                            <Button
-                                className="mb-5"
-                                style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
-                                color="warning"
-                                onClick={() => {
-                                    handleModal();
-                                }}
-                            >
-                                Vote
-                            </Button>
-                    }
-                </>
+                {
+                    !loading &&
+                    <>
+                        <Link to="/">
+                            <Button color="#fff" className="mb-5"
+                                style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px", marginRight: '10px' }}
+                            >Kembali</Button>
+                        </Link>
+                        {
+                            filterVoteSameNimUser.length > 0 ?
+                                <Button
+                                    className="mb-5"
+                                    style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
+                                    disabled
+                                >Sudah Voting</Button>
+                                :
+                                <Button
+                                    className="mb-5"
+                                    style={{ borderColor: '#E9E8F6', borderRadius: '50px', minWidth: "150px", padding: "15px" }}
+                                    color="warning"
+                                    onClick={() => {
+                                        handleModal();
+                                    }}
+                                >
+                                    Vote
+                                </Button>
+                        }
+                    </>
+
+                }
                 <Modal isOpen={modal} size="lg">
                     <center>
                         <ModalBody style={{ color: "#2e2c49" }}>
