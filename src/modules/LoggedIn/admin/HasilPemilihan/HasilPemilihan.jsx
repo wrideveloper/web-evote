@@ -8,42 +8,10 @@ import { MyContext } from '../../../../contexts/Api-Context';
 import { convertDate } from '../../../../helper/date'
 
 const HasilPemilihan = () => {
-    const { getAllCalon, calon } = useContext(MyContext)
-    const [totalCalon1, setVoteCalon1] = useState([])
-    const [totalCalon2, setVoteCalon2] = useState([])
-    const [totalCalon3, setVoteCalon3] = useState([])
+    const { getAllCalon } = useContext(MyContext)
     const [totalSemuaVote, setTotalSemuaVote] = useState([])
     const [hasil, setHasil] = useState([])
-
-    async function getCalonId1() {
-        try {
-            const response = await axios.get('https://evote.ceban-app.com/vote/2/sumvote');
-            setVoteCalon1(response.data)
-            // console.log("Calon 1", response.data);
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async function getCalonId2() {
-        try {
-            const response = await axios.get('https://evote.ceban-app.com/vote/3/sumvote');
-            setVoteCalon2(response.data)
-            // console.log("Calon 2", totalCalon2[0].sum_vote);
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async function getCalonId3() {
-        try {
-            const response = await axios.get('https://evote.ceban-app.com/vote/4/sumvote');
-            setVoteCalon3(response.data)
-            // console.log("Calon 3", response.data);
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const [allScore, setAllScore] = useState([])
 
     async function getsemuaTotalVote() {
         try {
@@ -64,26 +32,25 @@ const HasilPemilihan = () => {
         }
     }
 
+    const getAllScore = async () => {
+        try {
+            const request = await axios.get('https://evote.ceban-app.com/vote/get/score');
+            setAllScore(request.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     React.useEffect(() => {
         getsemuaTotalVote()
-        getCalonId1()
-        getCalonId2()
-        getCalonId3()
         getAllVote()
         getAllCalon()
+        getAllScore()
     }, [getAllCalon])
 
-    // console.log(totalCalon1 + totalCalon2 + totalCalon3)
-    const sumCalon1 = totalCalon1.length > 0 && totalCalon1[0].sum_vote
-    const sumCalon2 = totalCalon2.length > 0 && totalCalon2[0].sum_vote
-    const sumCalon3 = totalCalon3.length > 0 && totalCalon3[0].sum_vote
 
-
-    const dataSumVote = [sumCalon1, sumCalon2, sumCalon3]
-    const dataLabel = calon.length > 0 && [calon[0].nama, calon[1].nama, calon[2].nama]
-    console.log("Dfg", dataSumVote)
-    console.log("calon", calon)
-    console.log('label ', dataLabel)
+    const dataSumVote = allScore.map(item => item.total_vote)
+    const dataLabel = allScore.map(item => item.nama)
 
     return (
         <div>
@@ -96,63 +63,26 @@ const HasilPemilihan = () => {
                         <Col xs="8" >
                             <center>
                                 <Row style={{ margin: "2%", marginTop: "10%" }}>
-                                    <Col xs="4">
-                                        <CardBody style={{ backgroundColor: "#dfdfdf", borderRadius: "10%" }}>
-                                            {
-                                                totalCalon1.map((listVoteCalon1) => (
-                                                    <>
-                                                        <CardTitle tag="h1" style={{ marginBottom: "14%" }}>
-                                                            {listVoteCalon1.sum_vote}
-                                                        </CardTitle>
-                                                    </>
-                                                ))
-                                            }
-                                            <CardSubtitle className="mb-2 text-muted" tag="h6">
-                                                Total Suara
-                                            </CardSubtitle>
-                                            <CardText>
-                                                {calon.length > 0 && calon[0].nama}
-                                            </CardText>
-                                        </CardBody>
-                                    </Col>
-                                    <Col xs="4">
-                                        <CardBody style={{ backgroundColor: "#dfdfdf", borderRadius: "10%" }}>
-                                            {
-                                                totalCalon2.map((listVoteCalon2) => (
-                                                    <>
-                                                        <CardTitle tag="h1" style={{ marginBottom: "14%" }}>
-                                                            {listVoteCalon2.sum_vote}
-                                                        </CardTitle>
-                                                    </>
-                                                ))
-                                            }
-                                            <CardSubtitle className="mb-2 text-muted" tag="h6">
-                                                Total Suara
-                                            </CardSubtitle>
-                                            <CardText>
-                                                {calon.length > 0 && calon[1].nama}
-                                            </CardText>
-                                        </CardBody>
-                                    </Col>
-                                    <Col xs="4">
-                                        <CardBody style={{ backgroundColor: "#dfdfdf", borderRadius: "10%" }}>
-                                            {
-                                                totalCalon3.map((listVoteCalon3) => (
-                                                    <>
-                                                        <CardTitle tag="h1" style={{ marginBottom: "14%" }}>
-                                                            {listVoteCalon3.sum_vote}
-                                                        </CardTitle>
-                                                    </>
-                                                ))
-                                            }
-                                            <CardSubtitle className="mb-2 text-muted" tag="h6">
-                                                Total Suara
-                                            </CardSubtitle>
-                                            <CardText>
-                                                {calon.length > 0 && calon[2].nama}
-                                            </CardText>
-                                        </CardBody>
-                                    </Col>
+                                    {
+                                        allScore.map((item) => (
+                                            <Col xs="4">
+                                                <CardBody style={{ backgroundColor: "#dfdfdf", borderRadius: "10%" }}>
+
+                                                    <CardTitle tag="h1" style={{ marginBottom: "14%" }}>
+                                                        {item.total_vote}
+                                                    </CardTitle>
+
+                                                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                                                        Total Suara
+                                                    </CardSubtitle>
+                                                    <CardText>
+                                                        {item.nama}
+                                                    </CardText>
+                                                </CardBody>
+                                            </Col>
+                                        ))
+                                    }
+
                                 </Row>
                             </center>
                         </Col>

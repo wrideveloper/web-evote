@@ -10,7 +10,7 @@ const HarapanSaran = () => {
 
     async function getHarapan() {
         try {
-            const response = await axios.get('https://evote.ceban-app.com/vote');
+            const response = await axios.get('https://evote.ceban-app.com/harapan');
             setHarapan(response.data)
             // console.log("Halo ini Data Calon", response.data);
         } catch (error) {
@@ -20,20 +20,21 @@ const HarapanSaran = () => {
 
     React.useEffect(() => {
         getHarapan()
-    })
+    }, [])
 
     const history = useHistory()
     return (
         <>
             <Button className="mb-3" style={{ backgroundColor: '#3F3D56' }} onClick={() => history.goBack()}>Kembali</Button>
             {
-                harapan.map((listHarapan) => (
-                    <>
+                harapan.map((listHarapan, index) => (
+                    <div key={index}>
                         <CardHarapan
-                            name={listHarapan.nama_pemilih}
-                            saran={listHarapan.harapan}
+                            id={listHarapan.id_harapan}
+                            name={listHarapan.nama}
+                            saran={listHarapan.deskripsi}
                         />
-                    </>
+                    </div>
                 ))
             }
         </>
