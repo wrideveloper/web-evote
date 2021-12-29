@@ -222,6 +222,7 @@ const Home = () => {
                               handleModal();
                               setCalon(menampilkanData.id_calon);
                             }}
+                            disabled
                           >
                             Vote
                           </Button>

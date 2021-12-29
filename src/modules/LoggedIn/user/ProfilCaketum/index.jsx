@@ -201,6 +201,7 @@ const ProfilCaketum = () => {
                                     onClick={() => {
                                         handleModal();
                                     }}
+                                    disabled
                                 >
                                     Vote
                                 </Button>
